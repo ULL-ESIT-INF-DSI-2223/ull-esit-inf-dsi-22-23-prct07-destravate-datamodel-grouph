@@ -72,17 +72,15 @@ export class ColeccionRutas implements metodos_rutas {
     const ruta = ColeccionRutas.rutas.find(ruta => ruta.GetId() === id);
     return ruta;
   }
+  /**
+   * Método que devuelve el número de rutas
+   * @method getNumeroRutas
+   * @returns number
+   */
   getNumeroRutas(): number {
     return ColeccionRutas.rutas.length;
   }
-  /**
-   * Método que devuelve el númerColeccion.
-   * @method getNColeccion.
-   * @returns number
-   */
-  getColeccion(): number {
-    return ColeccionRutas.rutas.length;
-  }
+
   /**
    * Método que devuelve una ruta a partir de su nombre
    * @method getRutaPorNombre

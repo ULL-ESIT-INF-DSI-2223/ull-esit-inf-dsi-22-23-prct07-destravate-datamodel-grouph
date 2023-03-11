@@ -1,10 +1,21 @@
 import { Usuario } from "./usuario";
+import { metodos_usuarios } from "./metodosUsuario";
 
-export class ColeccionUsuarios {
-  private usuarios: Usuario[];
+/**
+ * Clase que representa una colección de usuarios
+ * @class ColeccionUsuarios
+ * @method getUsuarios: devuelve un array de usuarios
+ * @method addUsuario: añade un usuario al array de usuarios
+ * @method getUsuario: devuelve un usuario a partir de su id
+ * @method getNumeroUsuarios: devuelve el número de usuarios
+ * @method getUsuarioPorNombre: devuelve un usuario a partir de su nombre
+ * @method getItem: devuelve un usuario a partir de su índice
+ */
+export class ColeccionUsuarios implements metodos_usuarios {
+  private static usuarios: Usuario[] = [];
   private static ColeccionUsuarios: ColeccionUsuarios;
   private constructor() {
-    this.usuarios = [];
+    ColeccionUsuarios.usuarios = [];
   }
 
   /**
@@ -25,7 +36,7 @@ export class ColeccionUsuarios {
    * @returns Usuario[]
   */
   getUsuarios(): Usuario[] {
-    return this.usuarios;
+    return ColeccionUsuarios.usuarios;
   }
 
   /**
@@ -36,11 +47,10 @@ export class ColeccionUsuarios {
    */
   addUsuario(usuario_entrada: Usuario) {
     //Comrpobar que no existe un usuario con el mismo id
-    const usuarioExistente = this.usuarios.find(usuario => usuario_entrada.GetId() === usuario.GetId());
-    if (usuarioExistente) {
+    if (ColeccionUsuarios.usuarios.find(Usuarios => usuario_entrada.GetId() === Usuarios.GetId())) {
       return undefined;
     }
-    this.usuarios.push(usuario_entrada);
+    ColeccionUsuarios.usuarios.push(usuario_entrada);
     return usuario_entrada;
   }
 
@@ -51,10 +61,10 @@ export class ColeccionUsuarios {
    * @returns void
    */
   deleteUsuario(indice: number): void {
-    if (indice < 0 || indice >= this.usuarios.length) {
+    if (indice < 0 || indice >= ColeccionUsuarios.usuarios.length) {
       return;
     }
-    this.usuarios.splice(indice, 1);
+    ColeccionUsuarios.usuarios.splice(indice, 1);
   }
 
   /**
@@ -64,7 +74,7 @@ export class ColeccionUsuarios {
    * @returns Usuario | undefined
    */
   getUsuario(id: number): Usuario | undefined {
-    const usuario = this.usuarios.find(usuario => usuario.GetId() === id);
+    const usuario = ColeccionUsuarios.usuarios.find(usuario => usuario.GetId() === id);
     return usuario;
   }
 
@@ -74,7 +84,7 @@ export class ColeccionUsuarios {
    * @returns number
    */
   getNumeroUsuarios(): number {
-    return this.usuarios.length;
+    return ColeccionUsuarios.usuarios.length;
   }
 
   /**
@@ -84,7 +94,7 @@ export class ColeccionUsuarios {
    * @returns Usuario | undefined
    */
   getUsuarioPorNombre(nombre: string): Usuario | undefined {
-    const usuario = this.usuarios.find(usuario => usuario.GetNombre() === nombre);
+    const usuario = ColeccionUsuarios.usuarios.find(usuario => usuario.GetNombre() === nombre);
     return usuario;
   }
 
@@ -95,10 +105,10 @@ export class ColeccionUsuarios {
    * @returns Usuario | undefined
    */
   getItem(indice: number): Usuario | undefined {
-    if (indice < 0 || indice >= this.usuarios.length) {
+    if (indice < 0 || indice >= ColeccionUsuarios.usuarios.length) {
       return undefined;
     }
-    return this.usuarios[indice];
+    return ColeccionUsuarios.usuarios[indice];
   }
 
   /**
@@ -109,9 +119,11 @@ export class ColeccionUsuarios {
    */
   ordenarUsuariosPorNombreAlfabetico(ascendente: boolean): void {
     if (ascendente) {
-      this.usuarios.sort((a, b) => a.GetNombre().localeCompare(b.GetNombre()));
+      ColeccionUsuarios.usuarios.sort((a, b) => a.GetNombre().localeCompare(b.GetNombre()));
     } else {
-      this.usuarios.sort((a, b) => b.GetNombre().localeCompare(a.GetNombre()));
+      ColeccionUsuarios.usuarios.sort((a, b) => b.GetNombre().localeCompare(a.GetNombre()));
+    }
+    for (let i = 0; i < ColeccionUsuarios.usuarios.length; i++) {
     }
   }
 
@@ -124,29 +136,29 @@ export class ColeccionUsuarios {
    * @returns void
    */
   ordenarUsuariosPorDistanciaRecorrida(ascendente: boolean, periodo: number): void {
-    if (ascendente) {
+    if (!ascendente) {
       switch (periodo) {
       case 0:
-        this.usuarios.sort((a, b) => a.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => a.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1]);
         break;
       case 1:
-        this.usuarios.sort((a, b) => a.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => a.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1]);
         break;
       case 2:
-        this.usuarios.sort((a, b) => a.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => a.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1] - b.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1]);
       break;
       }
     }
     else {
       switch (periodo) {
       case 0:
-        this.usuarios.sort((a, b) => b.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => b.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[0][a.GetEstadisticas()[0].length-1]);
         break;
       case 1:
-        this.usuarios.sort((a, b) => b.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => b.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[1][a.GetEstadisticas()[0].length-1]);
         break;
       case 2:
-        this.usuarios.sort((a, b) => b.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1]);
+        ColeccionUsuarios.usuarios.sort((a, b) => b.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1] - a.GetEstadisticas()[2][a.GetEstadisticas()[0].length-1]);
       break;
       }
     }

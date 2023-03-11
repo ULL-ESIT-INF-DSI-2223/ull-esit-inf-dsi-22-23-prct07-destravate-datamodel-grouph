@@ -60,7 +60,7 @@ describe('ColeccionRutas', () => {
     expect(coleccionRutas.getRutas()).to.eql([ruta1, ruta2]);
     coleccionRutas.ordenarRutasPorCalificacionMedia(false);
     expect(coleccionRutas.getRutas()).to.eql([ruta2, ruta1]);
-    
+
   });
   it('Se puede ordenar las rutas por actividad', () => {
     coleccionRutas.ordenarRutasPorActividad(true);
