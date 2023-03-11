@@ -13,7 +13,7 @@
  */
 export class Ruta {
   constructor(private id: number, private nombre: string, private geo_ini : [number, number], private geo_fin : [number, number],
-    private longitud : number, private desnivel : number, private usuarios : number[], private actividad : boolean, private calificacion : number) {
+    private longitud : number, private desnivel : number, private usuarios : number[], private actividad : number, private calificacion : number) {
   }
   /**
    * @method GetId

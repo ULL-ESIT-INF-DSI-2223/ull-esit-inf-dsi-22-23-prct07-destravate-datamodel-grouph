@@ -4,7 +4,7 @@ type tipo_historico = (string | number)[][];
  * Clase Usuario
  * @param nombre Nombre del usuario
  * @param id Identificador del usuario
- * @param actividades Actividades del usuario
+ * @param actividades Actividades del usuario (0 si es correr, 1 si es en bici, 2 si es en ambas)
  * @param amigos Amigos del usuario
  * @param grupos_amigos Grupos de amigos del usuario
  * @param estadisticas Estadisticas del usuario
@@ -12,8 +12,8 @@ type tipo_historico = (string | number)[][];
  * @param retos Retos del usuario
  * @param historicos Historicos del usuario
  */
-export class Usuario {
-  constructor(private nombre: string, private id : number, private actividades : boolean, private amigos : number[], private grupos_amigos : number[][],
+export class Usuario{
+  constructor(private nombre: string, private id : number, private actividades : number, private amigos : number[], private grupos_amigos : number[][],
   private estadisticas : number[][], private rutas_favoritas : number[], private retos : number [], private historicos : tipo_historico) {
   }
   /**

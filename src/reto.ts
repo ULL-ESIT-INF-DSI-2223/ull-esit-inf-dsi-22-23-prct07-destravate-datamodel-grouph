@@ -1,5 +1,5 @@
 export class Reto{
-  constructor(private id: number, private nombre: string, private rutasFormantes: string[], private tipo: boolean,
+  constructor(private id: number, private nombre: string, private rutasFormantes: string[], private tipo: number,
     private kmTotales: number, private UsuariosActivos: number[]) {
   }
   /**
