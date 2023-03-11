@@ -27,8 +27,11 @@ export class ColeccionGrupos implements metodos_grupos {
     ColeccionGrupos.grupos.push(grupo);
   }
 
-  deleteGrupo(grupo: Grupo): void {
-    ColeccionGrupos.grupos = ColeccionGrupos.grupos.filter((g) => g !== grupo);
+  deleteGrupo(indice: number): void {
+    if (indice < 0 || indice >= ColeccionGrupos.grupos.length) {
+      return;
+    }
+    ColeccionGrupos.grupos.splice(indice, 1);
   }
 
   getGrupo(id: number): Grupo | undefined {

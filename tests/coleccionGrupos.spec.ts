@@ -18,7 +18,7 @@ describe('ColeccionGrupos', () => {
     expect(coleccionGrupos.getGrupo(1)).to.equal(grupo1);
   });
   it ('Se puede eliminar un grupo de la colección', () => {
-    coleccionGrupos.deleteGrupo(grupo1);
+    coleccionGrupos.deleteGrupo(0);
     expect(coleccionGrupos.getNumeroGrupos()).to.equal(0);
   });
   it ('Se puede obtener un grupo de la colección', () => {
@@ -37,14 +37,22 @@ describe('ColeccionGrupos', () => {
   it ('Se puede ordenar la colección de grupos por nombre alfabéticamente', () => {
     coleccionGrupos.addGrupo(grupo2);
     coleccionGrupos.ordenarGruposPorNombreAlfabetico(true);
-    expect(coleccionGrupos.getItem(0)).to.eql(grupo1);
-    expect(coleccionGrupos.getItem(1)).to.eql(grupo2);
+    expect(coleccionGrupos.getGrupos()).to.eql([grupo1, grupo2]);
+    coleccionGrupos.ordenarGruposPorNombreAlfabetico(false);
+    expect(coleccionGrupos.getGrupos()).to.eql([grupo2, grupo1]);
   });
   it ('Se puede ordenar la colección de grupos por distancia recorrida', () => {
     coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true, 0);
     expect(coleccionGrupos.getGrupos()).to.eql([grupo2, grupo1]);
     coleccionGrupos.ordenarGruposPorDistanciaRecorrida(false, 0);
     expect(coleccionGrupos.getGrupos()).to.eql([grupo1, grupo2]);
+    coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true, 1);
+    expect(coleccionGrupos.getGrupos()).to.eql([grupo2, grupo1]);
+    coleccionGrupos.ordenarGruposPorDistanciaRecorrida(false, 1);
+    expect(coleccionGrupos.getGrupos()).to.eql([grupo1, grupo2]);
+    coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true, 2);
+    expect(coleccionGrupos.getGrupos()).to.eql([grupo2, grupo1]);
+    coleccionGrupos.ordenarGruposPorDistanciaRecorrida(false, 2);
   });
   it ('Se puede ordenar la colección de grupos por integrantes', () => {
     coleccionGrupos.ordenarGruposPorCantidadDeIntegrantes(true);

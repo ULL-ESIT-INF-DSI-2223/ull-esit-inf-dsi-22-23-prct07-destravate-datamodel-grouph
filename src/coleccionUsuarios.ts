@@ -123,8 +123,6 @@ export class ColeccionUsuarios implements metodos_usuarios {
     } else {
       ColeccionUsuarios.usuarios.sort((a, b) => b.GetNombre().localeCompare(a.GetNombre()));
     }
-    for (let i = 0; i < ColeccionUsuarios.usuarios.length; i++) {
-    }
   }
 
   /**
