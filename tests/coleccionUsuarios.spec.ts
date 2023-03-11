@@ -25,7 +25,8 @@ describe('ColeccionUsuarios', () => {
   });
   it('Se puede obtener un usuario de la colección', () => {
     coleccionUsuarios.addUsuario(usuario2);
-    expect(coleccionUsuarios.getUsuario(1)).to.eql(usuario2);
+    expect(coleccionUsuarios.getUsuario(1)).to.eql(usuario1);
+    expect(coleccionUsuarios.getUsuario(2)).to.eql(usuario2);
   });
 });
 

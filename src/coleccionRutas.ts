@@ -42,14 +42,13 @@ export class ColeccionRutas implements metodos_rutas {
    * @param ruta
    * @returns void
    */
-  addRuta(ruta: Ruta): Ruta | undefined {
-    //Comrpobar que no existe una ruta con el mismo id
-    const rutaExistente = ColeccionRutas.rutas.find(ruta => ruta.GetId() === ruta.GetId());
-    if (rutaExistente) {
+  addRuta(ruta_entrada: Ruta): Ruta | undefined {
+    // Se comprueba que el id no existe
+    if (ColeccionRutas.rutas.find(ruta => ruta_entrada.GetId() === ruta.GetId())) {
       return undefined;
     }
-    ColeccionRutas.rutas.push(ruta);
-    return ruta;
+    ColeccionRutas.rutas.push(ruta_entrada);
+    return ruta_entrada;
   }
   /**
    * Método que elimina una ruta del arraColeccion.

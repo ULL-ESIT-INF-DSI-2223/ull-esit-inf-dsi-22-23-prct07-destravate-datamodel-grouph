@@ -34,14 +34,14 @@ export class ColeccionUsuarios {
    * @param usuario
    * @returns void
    */
-  addUsuario(usuario: Usuario) {
+  addUsuario(usuario_entrada: Usuario) {
     //Comrpobar que no existe un usuario con el mismo id
-    const usuarioExistente = this.usuarios.find(usuario => usuario.GetId() === usuario.GetId());
+    const usuarioExistente = this.usuarios.find(usuario => usuario_entrada.GetId() === usuario.GetId());
     if (usuarioExistente) {
       return undefined;
     }
-    this.usuarios.push(usuario);
-    return usuario;
+    this.usuarios.push(usuario_entrada);
+    return usuario_entrada;
   }
 
   /**
