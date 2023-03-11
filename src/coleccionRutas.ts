@@ -58,10 +58,10 @@ export class ColeccionRutas implements metodos_rutas {
    * @returns void
    */
   deleteRuta(indice: number): void {
-    if (indice < 0 || indice >= Coleccion.rutas.length) {
+    if (indice < 0 || indice >= ColeccionRutas.rutas.length) {
       return;
     }
-    Coleccion..splice(indice, 1);
+    ColeccionRutas.rutas.splice(indice, 1);
   }
   /**
    * Método que devuelve una ruta a partir de su id
@@ -70,16 +70,19 @@ export class ColeccionRutas implements metodos_rutas {
    * @returns Ruta | undefined
   */
   getRuta(id: number): Ruta | undefined {
-    const ruta = Coleccion..find(ruta => ruta.GetId() === id);
+    const ruta = ColeccionRutas.rutas.find(ruta => ruta.GetId() === id);
     return ruta;
+  }
+  getNumeroRutas(): number {
+    return ColeccionRutas.rutas.length;
   }
   /**
    * Método que devuelve el númerColeccion.
    * @method getNColeccion.
    * @returns number
    */
-  getNColeccion.(): number {
-    return Coleccion..length;
+  getColeccion(): number {
+    return ColeccionRutas.rutas.length;
   }
   /**
    * Método que devuelve una ruta a partir de su nombre
@@ -88,7 +91,7 @@ export class ColeccionRutas implements metodos_rutas {
    * @returns Ruta | undefined
    */
   getRutaPorNombre(nombre: string): Ruta | undefined {
-    const ruta = Coleccion..find(ruta => ruta.GetNombre() === nombre);
+    const ruta = ColeccionRutas.rutas.find(ruta => ruta.GetNombre() === nombre);
     return ruta;
   }
   /**
@@ -98,10 +101,10 @@ export class ColeccionRutas implements metodos_rutas {
    * @returns Ruta | undefined
    */
   getItem(indice: number): Ruta | undefined{
-    if (indice < 0 || indice >= Coleccion..length) {
+    if (indice < 0 || indice >= ColeccionRutas.rutas.length) {
       return undefined;
     }
-    return Coleccion.[indice];
+    return ColeccionRutas.rutas[indice];
   }
   /**
    * Método que ordenaColeccion. por nombre alfabéticamente, que dado un parámetro de entrada ordena ascendentemente o descendentemente
@@ -111,9 +114,9 @@ export class ColeccionRutas implements metodos_rutas {
   */
   ordenarRutasPorNombreAlfabetico(ascendente: boolean): void {
     if (ascendente) {
-      this.rutas.sort((a, b) => a.GetNombre().localeCompare(b.GetNombre()));
+      ColeccionRutas.rutas.sort((a, b) => a.GetNombre().localeCompare(b.GetNombre()));
     } else {
-      this.rutas.sort((a, b) => b.GetNombre().localeCompare(a.GetNombre()));
+      ColeccionRutas.rutas.sort((a, b) => b.GetNombre().localeCompare(a.GetNombre()));
     }
   }
   /**
@@ -123,9 +126,9 @@ export class ColeccionRutas implements metodos_rutas {
    */
   ordenarRutasPorCantidadUsuarios(ascendente: boolean): void {
     if (ascendente) {
-      this.rutas.sort((a, b) => a.GetUsuarios().length - b.GetUsuarios().length);
+      ColeccionRutas.rutas.sort((a, b) => a.GetUsuarios().length - b.GetUsuarios().length);
     } else {
-      this.rutas.sort((a, b) => b.GetUsuarios().length - a.GetUsuarios().length);
+      ColeccionRutas.rutas.sort((a, b) => b.GetUsuarios().length - a.GetUsuarios().length);
     }
   }
   /**
@@ -135,9 +138,9 @@ export class ColeccionRutas implements metodos_rutas {
    */
   ordenarRutasPorDistancia(ascendente: boolean): void {
     if (ascendente) {
-      this.rutas.sort((a, b) => a.GetLongitud() - b.GetLongitud());
+      ColeccionRutas.rutas.sort((a, b) => a.GetLongitud() - b.GetLongitud());
     } else {
-      this.rutas.sort((a, b) => b.GetLongitud() - a.GetLongitud());
+      ColeccionRutas.rutas.sort((a, b) => b.GetLongitud() - a.GetLongitud());
     }
   }
   /**
@@ -147,9 +150,9 @@ export class ColeccionRutas implements metodos_rutas {
   */
   ordenarRutasPorCalificacionMedia(ascendente: boolean): void {
     if (ascendente) {
-      this.rutas.sort((a, b) => a.GetCalificacion() - b.GetCalificacion());
+      ColeccionRutas.rutas.sort((a, b) => a.GetCalificacion() - b.GetCalificacion());
     } else {
-      this.rutas.sort((a, b) => b.GetCalificacion() - a.GetCalificacion());
+      ColeccionRutas.rutas.sort((a, b) => b.GetCalificacion() - a.GetCalificacion());
     }
   }
   /**
@@ -159,9 +162,9 @@ export class ColeccionRutas implements metodos_rutas {
   */
   ordenarRutasPorActividad(ascendente: boolean): void {
     if (ascendente) {
-      this.rutas.sort((a, b) => a.GetActividad() - b.GetActividad());
+      ColeccionRutas.rutas.sort((a, b) => a.GetActividad() - b.GetActividad());
     } else {
-      this.rutas.sort((a, b) => b.GetActividad() - a.GetActividad());
+      ColeccionRutas.rutas.sort((a, b) => b.GetActividad() - a.GetActividad());
     }
   }
 }
