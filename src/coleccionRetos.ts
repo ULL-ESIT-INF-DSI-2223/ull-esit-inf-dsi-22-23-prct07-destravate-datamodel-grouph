@@ -35,7 +35,7 @@ export class ColeccionRetos implements metodos_retos {
    * @param reto
    * @returns void
    */
-  addReto(reto_entrada: Reto) {
+  addReto(reto_entrada: Reto) : Reto | undefined{
     //Comrpobar que no existe un reto con el mismo id
     if (ColeccionRetos.retos.find(Retos => reto_entrada.GetId() === Retos.GetId())) {
       return undefined;
