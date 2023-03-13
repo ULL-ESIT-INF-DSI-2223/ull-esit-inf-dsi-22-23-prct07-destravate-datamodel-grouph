@@ -1,6 +1,6 @@
 import { Usuario, tipo_historico} from './usuario';
-import { ColeccionUsuarios } from './coleccionUsuarios'
-import inquirer from 'inquirer';
+import { ColeccionUsuarios } from './coleccionUsuarios';
+
 
 
 let coleccionUsuarios: ColeccionUsuarios;
@@ -22,26 +22,85 @@ enum Comandos {
   });
 }*/
 
-async function main(): Promise<void> {
+const inquirer = require('inquirer');
+
+function promptCrearUsuario() : void {
   console.clear();
-  while(true) {
-    const respuesta = await inquirer.prompt({
-      type: "list",
-      name: 'accion',
-      message: '¿Qué quieres hacer?',
-      choices: Object.values(Comandos)
-    });
-    if (respuesta.accion === 'Crear usuario') {
-      //Crear el usuario
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'nombre',
+      message: 'Introduce el nombre del usuario'
+    },
+    {
+      type: 'input',
+      name: 'id',
+      message: 'Introduce el id del usuario'
+    },
+    {
+      type: 'input',
+      name: 'actividades',
+      message: 'Introduce el numero de actividades del usuario'
+    },
+    {
+      type: 'input',
+      name: 'amigos',
+      message: 'Introduce los amigos del usuario'
+    },
+    {
+      type : 'input',
+      name : 'grupos_amigos',
+      message : 'Introduce los grupos de amigos del usuario'
+    },
+    {
+      type: 'input',
+      name: 'estadisticas',
+      message: 'Introduce las estadisticas del usuario'
+    },
+    {
+      type : 'input',
+      name : 'rutas_favoritas',
+      message : 'Introduce las rutas favoritas del usuario'
+    },
+    {
+      type : 'input',
+      name : 'retos',
+      message : 'Introduce los retos del usuario'
+    },
+    {
+      type : 'input',
+      name : 'historicos',
+      message : 'Introduce los historicos del usuario'
+    },
+    ]).then((respuestas) => {
+      const nuevoUsuario = new Usuario(respuestas.nombre, respuestas.id, respuestas.actividades, respuestas.amigos,
+        respuestas.grupos_amigos, respuestas.estadisticas, respuestas.rutas_favoritas, respuestas.retos, respuestas.historicos);
+      coleccionUsuarios.addUsuario(nuevoUsuario);
       console.log('Usuario creado exitosamente.');
-    }
-    if (respuesta.accion === 'Mostrar usuarios') {
-      //displayListaUsuarios();
-    }
-    else {
-      break;
+      console.log(coleccionUsuarios.getUsuarios());
+    });
+} 
+
+function main(): void {
+  console.clear();
+  let bool = true;
+  inquirer.prompt({
+    type: 'list',
+    name: 'comando',
+    message: '¿Qué quieres hacer?',
+    choices: Object.values(Comandos),
+  }).then((respuestas) => {
+    switch(respuestas['comando']) {
+      case Comandos.Salir:
+        bool = false;
+        break;
+      case Comandos.CrearUsuario:
+        promptCrearUsuario();
+        break;
     }
   }
+  )
+  
 }
 
 main();
