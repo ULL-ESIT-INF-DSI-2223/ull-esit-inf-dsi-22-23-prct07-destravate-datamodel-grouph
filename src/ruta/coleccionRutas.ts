@@ -14,7 +14,7 @@ import { metodos_rutas } from "./metodosRutas";
 export class ColeccionRutas implements metodos_rutas {
   private static rutas: Ruta[] = [];
   private static ColeccionRutas: ColeccionRutas;
-  private constructor() {
+  protected constructor() {
     ColeccionRutas.rutas = [];
   }
   /**

@@ -4,7 +4,7 @@ import { metodos_retos } from './metodosRetos';
 export class ColeccionRetos implements metodos_retos {
   private static retos: Reto[] = [];
   private static ColeccionRetos: ColeccionRetos;
-  private constructor() {
+  protected constructor() {
     ColeccionRetos.retos = [];
   }
 

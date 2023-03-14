@@ -1,21 +1,24 @@
 import { Usuario, tipo_historico} from './usuario';
-import { ColeccionUsuarios } from './coleccionUsuarios';
+import { ColeccionUsuarios } from './usuario/coleccionUsuarios';
 import {Ruta} from './ruta';
 import {Grupo} from './grupo';
 import {Reto} from './reto';
-import { ColeccionGrupos } from './coleccionGrupos';
-import { ColeccionRutas } from './coleccionRutas';
-import { ColeccionRetos } from './coleccionRetos';
+import { ColeccionGrupos } from './grupo/coleccionGrupos';
+import { ColeccionRutas } from './ruta/coleccionRutas';
+import { ColeccionRetos } from './reto/coleccionRetos';
 import { JsonColeccionUsuarios } from './JsonColeccionUsuarios';
+import { JsonColeccionGrupos } from './JsonColeccionGrupos';
+import { JsonColeccionRutas } from './JsonColeccionRutas';
+import { JsonColeccionRetos } from './JsonColeccionRetos';
 
 const inquirer = require('inquirer');
 
 
 
 let coleccionUsuarios: JsonColeccionUsuarios;
-let coleccionGrupos: ColeccionGrupos; 
-let coleccionRutas: ColeccionRutas;
-let coleccionRetos: ColeccionRetos;
+let coleccionGrupos: JsonColeccionGrupos;
+let coleccionRutas: JsonColeccionRutas;
+let coleccionRetos: JsonColeccionRetos;
 
 coleccionUsuarios = new JsonColeccionUsuarios();
 const usuario1 = new Usuario('Usuario1', 1, 0, [2,3], [[1, 2],[1, 3]], [[1, 1, 1],[1, 1, 1],[1, 1, 1]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
@@ -25,19 +28,19 @@ coleccionUsuarios.addUsuario(usuario1);
 coleccionUsuarios.addUsuario(usuario2);
 coleccionUsuarios.addUsuario(usuario3);
 
-coleccionGrupos = ColeccionGrupos.getInstance();
+coleccionGrupos = new JsonColeccionGrupos();
 const grupo1 = new Grupo(1, 'Grupo1', [1,2,3],[[1,1,1],[1,1,1],[1,1,1]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]]);
 const grupo2 = new Grupo(2, 'Grupo2', [1,2,3,4],[[2,2,2],[2,2,2],[2,2,2]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]]);
 coleccionGrupos.addGrupo(grupo1);
 coleccionGrupos.addGrupo(grupo2);
 
-coleccionRutas = ColeccionRutas.getInstance();
+coleccionRutas = new JsonColeccionRutas();
 const ruta1 = new Ruta(1, 'ruta1', [1, 1], [2, 2], 20, 1, [1, 2, 3, 4], 4, 5);
 const ruta2 = new Ruta(2, 'ruta2', [1, 1], [2, 2], 30, 1, [1, 2], 5, 6);
 coleccionRutas.addRuta(ruta1);
 coleccionRutas.addRuta(ruta2);
 
-coleccionRetos = ColeccionRetos.getInstance();
+coleccionRetos = new JsonColeccionRetos();
 const reto1 = new Reto(1, 'reto1',['ruta1','ruta2'], 0, 1000, [1,2,3]);
 const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4]);
 coleccionRetos.addReto(reto1);
@@ -218,7 +221,7 @@ function promptCrearUsuario() : void {
       console.log('Usuario creado exitosamente.');
       console.log(coleccionUsuarios.getUsuarios());
     });
-} 
+}
 
 function MostrarUsuarios() {
   console.clear();
@@ -262,12 +265,20 @@ function promptCrearRuta() : void {
   {
     type: 'input',
     name: 'punto_inicio',
-    message: 'Introduce el punto de inicio de la ruta'
+    message: 'Introduce el punto de inicio de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
     name: 'punto_fin',
-    message: 'Introduce el punto de fin de la ruta'
+    message: 'Introduce el punto de fin de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
@@ -282,7 +293,11 @@ function promptCrearRuta() : void {
   {
     type: 'input',
     name: 'usuarios',
-    message: 'Introduce los usuarios de la ruta'
+    message: 'Introduce los usuarios de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
@@ -294,8 +309,8 @@ function promptCrearRuta() : void {
     name: 'calificacion',
     message: 'Introduce la calificacion de la ruta'
   }]).then((respuestas) => {
-    const nuevaRuta = new Ruta(respuestas.id, respuestas.nombre, respuestas.punto_inicio, respuestas.punto_fin,
-      respuestas.distancia, respuestas.desnivel, respuestas.usuarios, respuestas.actividad, respuestas.calificacion);
+    const nuevaRuta = new Ruta(parseInt(respuestas.id), respuestas.nombre, respuestas.punto_inicio, respuestas.punto_fin,
+      parseInt(respuestas.distancia), parseInt(respuestas.desnivel), respuestas.usuarios, parseInt(respuestas.actividad), parseInt(respuestas.calificacion));
     coleccionRutas.addRuta(nuevaRuta);
     console.log('Ruta creada exitosamente.');
   });
@@ -343,29 +358,58 @@ function promptCrearGrupo () : void {
   {
     type: 'input',
     name: 'miembros',
-    message: 'Introduce los usuarios del grupo'
+    message: 'Introduce los usuarios del grupo',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
     name: 'estadisticas',
-    message: 'Introduce las estadisticas del grupo'
+    message: 'Introduce las estadisticas del grupo',
+    filter: function(input: string) {
+      // Convertir la entrada en un array de arrays de enteros
+      const grupos = input.split('.');
+      return grupos.map(grupo => grupo.split(',').map(numero => parseInt(numero)));
+    },
   },
   {
     type: 'input',
     name: 'clasificacion',
-    message: 'Introduce la clasificacion'
+    message: 'Introduce la clasificacion',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
     name: 'rutas',
-    message: 'Introduce las rutas favoritas del grupo'
+    message: 'Introduce las rutas favoritas del grupo',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   },
   {
     type: 'input',
     name: 'historicos',
-    message: 'Introduce los historicos del grupo'
+    message: 'Introduce los historicos del grupo',
+    filter: function(input) {
+      // Convertir la entrada en un array de arrays con elementos de cadena y número
+      const arrays = input.split('.');
+      const result = [];
+      for (let i = 0; i < arrays.length; i++) {
+        const elementos = arrays[i].split(',');
+        const texto = elementos[0];
+        const numero = parseInt(elementos[1]);
+        result.push([texto, numero]);
+      }
+      return result;
+    },
   }]).then((respuestas) => {
-    const nuevoGrupo = new Grupo(respuestas.id,respuestas.nombre, respuestas.miembros, respuestas.estadisticas,
+    const nuevoGrupo = new Grupo(parseInt(respuestas.id), respuestas.nombre, respuestas.miembros, respuestas.estadisticas,
     respuestas.clasificacion, respuestas.rutas, respuestas.historicos);
     coleccionGrupos.addGrupo(nuevoGrupo);
     console.log('Grupo creado exitosamente.');
@@ -414,7 +458,11 @@ function promptCrearReto () : void {
   {
     type: 'input',
     name: 'rutas',
-    message: 'Introduce los rutas del reto'
+    message: 'Introduce los rutas del reto',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(palabra => palabra);
+    },
   },
   {
     type: 'input',
@@ -429,10 +477,14 @@ function promptCrearReto () : void {
   {
     type: 'input',
     name: 'usuarios',
-    message: 'Introduce los usuarios del reto'
+    message: 'Introduce los usuarios del reto',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
   }]).then((respuestas) => {
-    const nuevoReto = new Reto(respuestas.id, respuestas.nombre, respuestas.rutas, respuestas.tipo,
-    respuestas.kilometros, respuestas.usuarios);
+    const nuevoReto = new Reto(parseInt(respuestas.id), respuestas.nombre, respuestas.rutas, parseInt(respuestas.tipo),
+    parseInt(respuestas.kilometros), respuestas.usuarios);
     coleccionRetos.addReto(nuevoReto);
     console.log('Reto creado exitosamente.');
   });

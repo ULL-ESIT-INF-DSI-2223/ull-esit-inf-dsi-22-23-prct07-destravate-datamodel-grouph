@@ -1,4 +1,4 @@
-type tipo_historico = (string | number)[][];
+export type tipo_historico = (string | number)[][];
 
 /**
  * @class Grupo

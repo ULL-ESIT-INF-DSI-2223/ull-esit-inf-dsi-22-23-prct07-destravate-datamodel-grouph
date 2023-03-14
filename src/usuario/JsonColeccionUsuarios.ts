@@ -6,7 +6,7 @@ import * as FileSync from "lowdb/adapters/FileSync";
 
 // Tipo de datos como el de la clase usuario
 type schemaType = {
-  user: {nombre: string, id: number, actividades: number, amigos: number[], grupos_amigos: number[][], 
+  user: {nombre: string, id: number, actividades: number, amigos: number[], grupos_amigos: number[][],
     estadisticas: number[][], rutas_favoritas: number[], retos: number[], historicos: tipo_historico}[]
 }
 

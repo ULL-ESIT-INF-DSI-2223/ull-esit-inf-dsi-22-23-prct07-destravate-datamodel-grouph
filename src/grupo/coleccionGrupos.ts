@@ -8,7 +8,7 @@ import { metodos_grupos } from './metodosGrupos';
 export class ColeccionGrupos implements metodos_grupos {
   private static grupos: Grupo[] = [];
   private static colecionGrupos: ColeccionGrupos;
-  private constructor() {
+  protected constructor() {
     ColeccionGrupos.grupos = [];
   }
 
