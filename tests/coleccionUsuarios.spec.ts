@@ -17,10 +17,13 @@ describe('ColeccionUsuarios', () => {
   it('Se puede añadir un usuario a la colección', () => {
     coleccionUsuarios.addUsuario(usuario1);
     expect(coleccionUsuarios.getUsuario(1)).to.equal(usuario1);
+    expect(coleccionUsuarios.addUsuario(usuario1)).to.equal(undefined);
   });
   it('Se puede eliminar un usuario de la colección', () => {
     coleccionUsuarios.addUsuario(usuario2);
     coleccionUsuarios.deleteUsuario(1);
+    expect(coleccionUsuarios.getNumeroUsuarios()).to.equal(1);
+    coleccionUsuarios.deleteUsuario(-4);
     expect(coleccionUsuarios.getNumeroUsuarios()).to.equal(1);
   });
   it('Se puede obtener un usuario de la colección', () => {
@@ -40,6 +43,7 @@ describe('ColeccionUsuarios', () => {
   it('Se puede obtener un usuario dado un indice', () => {
     expect(coleccionUsuarios.getItem(0)).to.eql(usuario1);
     expect(coleccionUsuarios.getItem(1)).to.eql(usuario2);
+    expect(coleccionUsuarios.getItem(-4)).to.equal(undefined);
   });
   it('Se puede ordenar la colección de usuarios alfabeticamente', () => {
     coleccionUsuarios.ordenarUsuariosPorNombreAlfabetico(true);

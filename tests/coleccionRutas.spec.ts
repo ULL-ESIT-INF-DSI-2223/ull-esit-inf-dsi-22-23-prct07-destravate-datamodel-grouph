@@ -15,10 +15,13 @@ describe('ColeccionRutas', () => {
   it('Se puede añadir una ruta a la colección', () => {
     coleccionRutas.addRuta(ruta1);
     expect(coleccionRutas.getRuta(1)).to.equal(ruta1);
+    expect(coleccionRutas.addRuta(ruta1)).to.equal(undefined);
   });
   it('Se puede eliminar una ruta de la colección', () => {
     coleccionRutas.addRuta(ruta2);
     coleccionRutas.deleteRuta(1);
+    expect(coleccionRutas.getNumeroRutas()).to.equal(1);
+    coleccionRutas.deleteRuta(-4);
     expect(coleccionRutas.getNumeroRutas()).to.equal(1);
   });
   it('Se puede obtener una ruta de la colección', () => {
@@ -36,6 +39,7 @@ describe('ColeccionRutas', () => {
   });
   it('Se puede obtener una ruta dado el indice', () => {
     expect(coleccionRutas.getItem(0)).to.eql(ruta1);
+    expect(coleccionRutas.getItem(-4)).to.eql(undefined);
   });
   it('Se puede ordenar las rutas alfabeticamente', () => {
     coleccionRutas.ordenarRutasPorNombreAlfabetico(true);

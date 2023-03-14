@@ -20,6 +20,8 @@ describe('ColeccionGrupos', () => {
   it ('Se puede eliminar un grupo de la colección', () => {
     coleccionGrupos.deleteGrupo(0);
     expect(coleccionGrupos.getNumeroGrupos()).to.equal(0);
+    coleccionGrupos.deleteGrupo(-4);
+    expect(coleccionGrupos.getNumeroGrupos()).to.equal(0);
   });
   it ('Se puede obtener un grupo de la colección', () => {
     coleccionGrupos.addGrupo(grupo1);

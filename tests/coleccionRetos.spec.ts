@@ -16,9 +16,12 @@ describe('ColeccionRetos', () => {
   it ('Se puede añadir un reto a la colección', () => {
     coleccionRetos.addReto(reto1);
     expect(coleccionRetos.getReto(1)).to.equal(reto1);
+    expect(coleccionRetos.addReto(reto1)).to.equal(undefined);
   });
   it ('Se puede eliminar un reto de la colección', () => {
     coleccionRetos.deleteReto(0);
+    expect(coleccionRetos.getNumeroRetos()).to.equal(0);
+    coleccionRetos.deleteReto(-4);
     expect(coleccionRetos.getNumeroRetos()).to.equal(0);
   });
   it ('Se puede obtener un reto de la colección', () => {
@@ -33,6 +36,7 @@ describe('ColeccionRetos', () => {
   });
   it ('Se puede obtener un reto de la colección por su índice', () => {
     expect(coleccionRetos.getRetosPorIndice(0)).to.equal(reto1);
+    expect(coleccionRetos.getRetosPorIndice(-4)).to.equal(undefined);
   });
   it ('Se puede ordenar los retos por nombre alfabéticamente', () => {
     coleccionRetos.addReto(reto2);
