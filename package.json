@@ -39,6 +39,7 @@
   "dependencies": {
     "inquirer": "^8.2.5",
     "lowdb": "^1.0.0",
+    "node-fetch": "^2.6.1",
     "prompt-sync": "^4.2.0"
   },
   "directories": {

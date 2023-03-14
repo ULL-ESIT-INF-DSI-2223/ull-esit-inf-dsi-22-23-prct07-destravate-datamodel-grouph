@@ -14,7 +14,7 @@ import { metodos_usuarios } from "./metodosUsuario";
 export class ColeccionUsuarios implements metodos_usuarios {
   private static usuarios: Usuario[] = [];
   private static ColeccionUsuarios: ColeccionUsuarios;
-  private constructor() {
+  protected constructor() {
     ColeccionUsuarios.usuarios = [];
   }
 
