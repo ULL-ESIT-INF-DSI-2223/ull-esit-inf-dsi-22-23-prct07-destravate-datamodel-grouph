@@ -10,6 +10,13 @@ type schemaType = {
     longitud : number, desnivel : number, usuarios : number[], actividad : number, calificacion : number}[]
 }
 
+/**
+ * Clase que extiende de ColeccionRutas y que implementa la persistencia de datos en un fichero JSON
+ * @extends ColeccionRutas
+ * @method addRuta
+ * @method deleteRuta
+ * @method storeRoutes
+ */
 export class JsonColeccionRutas extends ColeccionRutas {
   private database: lowdb.LowdbSync<schemaType>;
   constructor () {
@@ -26,15 +33,32 @@ export class JsonColeccionRutas extends ColeccionRutas {
       this.database.set("route", []).write();
     }
   }
+
+  /**
+   * añade una ruta al array de rutas y lo guarda en el fichero JSON
+   * @param Ruta_entrada
+   * @returns resultado
+   */
   addRuta(Ruta_entrada: Ruta) {
     let resultado = super.addRuta(Ruta_entrada);
     this.storeRoutes();
     return resultado;
   }
+
+  /**
+   * elimina una ruta del array de rutas y lo guarda en el fichero JSON
+   * @param indice
+   * @returns void
+   */
   deleteRuta(indice: number): void {
     super.deleteRuta(indice);
     this.storeRoutes();
   }
+
+  /**
+   * guarda las rutas en el fichero JSON
+   * @returns void
+   */
   private storeRoutes() {
     this.database.set("route", this.getRutas()).write();
   }

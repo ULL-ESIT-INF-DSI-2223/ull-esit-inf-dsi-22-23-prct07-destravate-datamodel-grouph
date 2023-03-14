@@ -1,3 +1,18 @@
+/**
+ * @class Reto
+ * @param id
+ * @param nombre
+ * @param rutasFormantes
+ * @param tipo
+ * @param kmTotales
+ * @param UsuariosActivos
+ * @method GetId
+ * @method GetNombre
+ * @method GetRutasFormantes
+ * @method GetTipo
+ * @method GetKmTotales
+ * @method GetUsuariosActivos
+ */
 export class Reto{
   constructor(private id: number, private nombre: string, private rutasFormantes: string[], private tipo: number,
     private kmTotales: number, private UsuariosActivos: number[]) {

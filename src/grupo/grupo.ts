@@ -10,6 +10,13 @@ export type tipo_historico = (string | number)[][];
  * @param clasificacionUsuarios Clasificación de los usuarios del grupo
  * @param RutasFavoritas Rutas favoritas del grupo
  * @param historicos Historial de actividades del grupo
+ * @method GetId
+ * @method GetNombre
+ * @method GetMiembrosGrupo
+ * @method GetEstadisticas
+ * @method GetClasificacionUsuarios
+ * @method GetRutasFavoritas
+ * @method GetHistoricos
  */
 export class Grupo{
   constructor(private id: number, private nombre: string, private miembrosGrupo: number[],

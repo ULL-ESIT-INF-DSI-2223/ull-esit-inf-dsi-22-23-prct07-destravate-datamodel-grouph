@@ -10,6 +10,15 @@
  * @param usuarios Usuarios que han realizado la ruta
  * @param actividad Estado de la ruta
  * @param calificacion Calificación de la ruta
+ * @method GetId
+ * @method GetNombre
+ * @method GetGeoIni
+ * @method GetGeoFin
+ * @method GetLongitud
+ * @method GetDesnivel
+ * @method GetUsuarios
+ * @method GetActividad
+ * @method GetCalificacion
  */
 export class Ruta {
   constructor(private id: number, private nombre: string, private geo_ini : [number, number], private geo_fin : [number, number],

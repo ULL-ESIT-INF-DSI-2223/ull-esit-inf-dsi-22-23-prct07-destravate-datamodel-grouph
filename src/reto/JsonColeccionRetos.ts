@@ -8,6 +8,13 @@ type schemaType = {
     kmTotales: number, UsuariosActivos: number[]}[]
 }
 
+/**
+ * Clase que extiende de ColeccionRetos y que implementa la persistencia de datos en un fichero JSON
+ * @extends ColeccionRetos
+ * @method addReto
+ * @method deleteReto
+ * @method storeChallenges
+ */
 export class JsonColeccionRetos extends ColeccionRetos {
   private database: lowdb.LowdbSync<schemaType>;
   constructor() {
@@ -24,15 +31,32 @@ export class JsonColeccionRetos extends ColeccionRetos {
       this.database.set("challenge", []).write();
     }
   }
+
+  /**
+   * añade un reto al array de retos y lo guarda en el fichero JSON
+   * @param reto_entrada
+   * @returns resultado
+   */
   addReto(reto_entrada: Reto) {
     let resultado = super.addReto(reto_entrada);
     this.storeChallenges();
     return resultado;
   }
+
+  /**
+   * elimina un reto del array de retos y lo guarda en el fichero JSON
+   * @param id
+   * @returns void
+   */
   deleteReto(id: number): void {
     super.deleteReto(id);
     this.storeChallenges();
   }
+
+  /**
+   * guarda los retos en el fichero JSON
+   * @returns void
+   */
   private storeChallenges(): void {
     this.database.set("challenge", this.getRetos()).write();
   }

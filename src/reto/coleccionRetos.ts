@@ -1,6 +1,21 @@
 import { Reto } from './reto';
 import { metodos_retos } from './metodosRetos';
 
+/**
+ * Clase que representa una colección de retos
+ * @class ColeccionRetos
+ * @method getInstance
+ * @method getRetos
+ * @method addReto
+ * @method deleteReto
+ * @method getReto
+ * @method getNumeroRetos
+ * @method getRetoPorNombre
+ * @method getRetosPorIndice
+ * @method ordenarRetosPorNombreAlfabetico
+ * @method ordenarRetosPorDistanciaRecorrida
+ * @method ordenarRetosPorCantidadDeUsuarios
+ */
 export class ColeccionRetos implements metodos_retos {
   private static retos: Reto[] = [];
   private static ColeccionRetos: ColeccionRetos;

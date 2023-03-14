@@ -11,6 +11,15 @@ export type tipo_historico = (string | number)[][];
  * @param rutas_favoritas Rutas favoritas del usuario
  * @param retos Retos del usuario
  * @param historicos Historicos del usuario
+ * @method GetNombre
+ * @method GetId
+ * @method GetActividades
+ * @method GetAmigos
+ * @method GetGruposAmigos
+ * @method GetEstadisticas
+ * @method GetRutasFavoritas
+ * @method GetRetos
+ * @method GetHistoricos
  */
 export class Usuario{
   constructor(private nombre: string, private id : number, private actividades : number, private amigos : number[], private grupos_amigos : number[][],

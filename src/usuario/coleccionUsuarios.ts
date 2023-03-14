@@ -4,6 +4,7 @@ import { metodos_usuarios } from "./metodosUsuario";
 /**
  * Clase que representa una colección de usuarios
  * @class ColeccionUsuarios
+ * @method getInstance
  * @method getUsuarios: devuelve un array de usuarios
  * @method addUsuario: añade un usuario al array de usuarios
  * @method getUsuario: devuelve un usuario a partir de su id

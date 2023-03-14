@@ -1,15 +1,15 @@
-import { Usuario, tipo_historico} from './usuario';
+import { Usuario, tipo_historico} from './usuario/usuario';
 import { ColeccionUsuarios } from './usuario/coleccionUsuarios';
-import {Ruta} from './ruta';
-import {Grupo} from './grupo';
-import {Reto} from './reto';
+import {Ruta} from './ruta/ruta';
+import {Grupo} from './grupo/grupo';
+import {Reto} from './reto/reto';
 import { ColeccionGrupos } from './grupo/coleccionGrupos';
 import { ColeccionRutas } from './ruta/coleccionRutas';
 import { ColeccionRetos } from './reto/coleccionRetos';
-import { JsonColeccionUsuarios } from './JsonColeccionUsuarios';
-import { JsonColeccionGrupos } from './JsonColeccionGrupos';
-import { JsonColeccionRutas } from './JsonColeccionRutas';
-import { JsonColeccionRetos } from './JsonColeccionRetos';
+import { JsonColeccionUsuarios } from './usuario/JsonColeccionUsuarios';
+import { JsonColeccionGrupos } from './grupo/JsonColeccionGrupos';
+import { JsonColeccionRutas } from './ruta/JsonColeccionRutas';
+import { JsonColeccionRetos } from './reto/JsonColeccionRetos';
 
 const inquirer = require('inquirer');
 
@@ -46,6 +46,9 @@ const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4]);
 coleccionRetos.addReto(reto1);
 coleccionRetos.addReto(reto2);
 
+/**
+ * comandos
+ */
 enum Comandos {
   CrearUsuario = 'Crear usuario',
   BorrarUsuario = 'Borrar usuario',
@@ -62,7 +65,11 @@ enum Comandos {
   Salir = 'Salir'
 }
 
-
+/**
+ * Pregunta al usuario qué comando desea ejecutar
+ * y ejecuta el comando correspondiente.
+ * @param coleccionUsuarios Colección de usuarios
+ */
 function promptCrearUsuario() : void {
   console.clear();
   inquirer.prompt([
@@ -222,7 +229,10 @@ function promptCrearUsuario() : void {
       console.log(coleccionUsuarios.getUsuarios());
     });
 }
-
+/**
+ * Muestra los usuarios
+ * @returns {void}
+ */
 function MostrarUsuarios() {
   console.clear();
   let variable = coleccionUsuarios.getUsuarios();
@@ -231,6 +241,10 @@ function MostrarUsuarios() {
   });
 }
 
+/**
+ * Borra un usuario
+ * @returns {void}
+ */
 function BorrarUsuario() {
   console.clear();
   inquirer.prompt({
@@ -249,6 +263,10 @@ function BorrarUsuario() {
   });
 }
 
+/**
+ * Crea una ruta
+ * @returns {void}
+ */
 function promptCrearRuta() : void {
   console.clear();
   inquirer.prompt([
@@ -316,6 +334,10 @@ function promptCrearRuta() : void {
   });
 }
 
+/**
+ * Borra una ruta
+ * @returns {void}
+ */
 function promptBorrarRuta() : void {
   console.clear();
   inquirer.prompt({
@@ -334,6 +356,10 @@ function promptBorrarRuta() : void {
   });
 }
 
+/**
+ * Muestra las rutas
+ * @returns {void}
+ */
 function MostrarRutas() {
   console.clear();
   let variable = coleccionRutas.getRutas();
@@ -342,6 +368,10 @@ function MostrarRutas() {
   });
 }
 
+/**
+ * Crea un grupo
+ * @returns {void}
+ */
 function promptCrearGrupo () : void {
   console.clear();
   inquirer.prompt([
@@ -416,6 +446,10 @@ function promptCrearGrupo () : void {
   });
 }
 
+/**
+ * Borra un grupo
+ * @returns {void}
+ */
 function promptBorrarGrupo () : void {
   console.clear();
   inquirer.prompt({
@@ -434,6 +468,10 @@ function promptBorrarGrupo () : void {
   });
 }
 
+/**
+ * Muestra los grupos
+ * @returns {void}
+ */
 function MostrarGrupos() {
   console.clear();
   let variable = coleccionGrupos.getGrupos();
@@ -441,7 +479,10 @@ function MostrarGrupos() {
     console.log(grupo.GetNombre(), grupo.GetId());
   });
 }
-
+/**
+ * Crea un reto
+ * @returns {void}
+ */
 function promptCrearReto () : void {
   console.clear();
   inquirer.prompt([
@@ -490,6 +531,10 @@ function promptCrearReto () : void {
   });
 }
 
+/**
+ * Borra un reto
+ * @returns {void}
+ */
 function promptBorrarReto () : void {
   console.clear();
   inquirer.prompt({
@@ -508,6 +553,10 @@ function promptBorrarReto () : void {
   });
 }
 
+/**
+ * Muestra los retos
+ * @returns {void}
+ */
 function MostrarRetos() {
   console.clear();
   let variable = coleccionRetos.getRetos();
@@ -516,6 +565,10 @@ function MostrarRetos() {
   });
 }
 
+/**
+ * Crea un usuario
+ * @returns {void}
+ */
 function main(): void {
   console.clear();
   inquirer.prompt({
