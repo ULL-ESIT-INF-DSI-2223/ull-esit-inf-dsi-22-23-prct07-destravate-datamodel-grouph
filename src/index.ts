@@ -369,16 +369,16 @@ function promptBorrarRuta(idUsuarioCreador: number) : void {
     let variable = coleccionRutas.getNumeroRutas();
     if (idUsuarioCreador === coleccionRutas.getRuta(parseInt(respuestas.id)).GetIdCreador()) {
       coleccionRutas.deleteRuta(parseInt(respuestas.id));
+      coleccionRutas.deleteRuta(parseInt(respuestas.id));
+      if (variable === coleccionRutas.getNumeroRutas()) {
+        console.log('La ruta no existe');
+      }
+      else {
+        console.log('Ruta borrada exitosamente');
+      }
     }
     else {
       console.log('No puedes borrar una ruta que no has creado');
-    }
-    coleccionRutas.deleteRuta(parseInt(respuestas.id));
-    if (variable === coleccionRutas.getNumeroRutas()) {
-      console.log('La ruta no existe');
-    }
-    else {
-      console.log('Ruta borrada exitosamente');
     }
   });
 }
@@ -487,16 +487,16 @@ function promptBorrarGrupo (idUsuarioCreador: number) : void {
     let variable = coleccionGrupos.getNumeroGrupos();
     if (idUsuarioCreador === coleccionGrupos.getGrupo(parseInt(respuestas.id)).GetIdCreador()) {
       coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
+      coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
+      if (variable === coleccionGrupos.getNumeroGrupos()) {
+        console.log('El grupo no existe');
+      }
+      else {
+        console.log('Grupo borrado exitosamente');
+      }
     }
     else {
       console.log('No puedes borrar un grupo que no has creado');
-    }
-    coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
-    if (variable === coleccionGrupos.getNumeroGrupos()) {
-      console.log('El grupo no existe');
-    }
-    else {
-      console.log('Grupo borrado exitosamente');
     }
   });
 }
@@ -578,16 +578,16 @@ function promptBorrarReto (idUsuarioCreador: number) : void {
     let variable = coleccionRetos.getNumeroRetos();
     if (idUsuarioCreador === coleccionRetos.getReto(parseInt(respuestas.id)).GetIdCreador()) {
       coleccionRetos.deleteReto(parseInt(respuestas.id));
+      coleccionRetos.deleteReto(parseInt(respuestas.id));
+      if (variable === coleccionRetos.getNumeroRetos()) {
+        console.log('El reto no existe');
+      }
+      else {
+        console.log('Reto borrado exitosamente');
+      }
     }
     else {
       console.log('No puedes borrar un Reto que no has creado');
-    }
-    coleccionRetos.deleteReto(parseInt(respuestas.id));
-    if (variable === coleccionRetos.getNumeroRetos()) {
-      console.log('El reto no existe');
-    }
-    else {
-      console.log('Reto borrado exitosamente');
     }
   });
 }
