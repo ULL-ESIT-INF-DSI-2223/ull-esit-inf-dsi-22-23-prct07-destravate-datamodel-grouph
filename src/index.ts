@@ -13,7 +13,33 @@ import { JsonColeccionRetos } from './reto/JsonColeccionRetos';
 
 const inquirer = require('inquirer');
 
+function ImprimirUsuario(entrada: JsonColeccionUsuarios): void {
+  let variable = entrada.getUsuarios();
+  variable.forEach((usuario) => {
+    console.log(usuario.GetNombre(), usuario.GetId());
+  });
+}
 
+function ImprimirRutas(coleccionRutas: JsonColeccionRutas): void {
+  let variable = coleccionRutas.getRutas();
+  variable.forEach((ruta) => {
+    console.log(ruta.GetNombre(), ruta.GetId());
+  });
+}
+
+function ImprimirGrupos(coleccionGrupos: JsonColeccionGrupos) {
+  let variable = coleccionGrupos.getGrupos();
+  variable.forEach((grupo) => {
+    console.log(grupo.GetNombre(), grupo.GetId());
+  });
+}
+
+function ImprimirRetos (coleccionRetos: JsonColeccionRetos) : void {
+  let variable = coleccionRetos.getRetos();
+  variable.forEach((reto) => {
+    console.log(reto.GetNombre(), reto.GetId());
+  });
+}
 
 let coleccionUsuarios: JsonColeccionUsuarios;
 let coleccionGrupos: JsonColeccionGrupos;
@@ -21,44 +47,16 @@ let coleccionRutas: JsonColeccionRutas;
 let coleccionRetos: JsonColeccionRetos;
 
 coleccionUsuarios = new JsonColeccionUsuarios();
-/*
-const usuario1 = new Usuario('Usuario1', 1, 0, [2,3], [[1, 2],[1, 3]], [[1, 1, 1],[1, 1, 1],[1, 1, 1]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
-const usuario2 = new Usuario('Usuario2', 2, 2, [1,3], [[1, 2],[1, 3]], [[2, 2, 2],[2, 2, 2],[2, 2, 2]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
-const usuario3 = new Usuario('Usuario3', 3, 0, [1,2], [[1, 2],[1, 3]], [[3, 3, 3],[3, 3, 3],[3, 3, 3]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
-coleccionUsuarios.addUsuario(usuario1);
-coleccionUsuarios.addUsuario(usuario2);
-coleccionUsuarios.addUsuario(usuario3);
-*/
 coleccionGrupos = new JsonColeccionGrupos();
-/*
-const grupo1 = new Grupo(1, 'Grupo1', [1,2,3],[[1,1,1],[1,1,1],[1,1,1]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],1);
-const grupo2 = new Grupo(2, 'Grupo2', [1,2,3,4],[[2,2,2],[2,2,2],[2,2,2]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],2);
-coleccionGrupos.addGrupo(grupo1);
-coleccionGrupos.addGrupo(grupo2);
-*/
-
 coleccionRutas = new JsonColeccionRutas();
-/*
-const ruta1 = new Ruta(1, 'ruta1', [1, 1], [2, 2], 20, 1, [1, 2, 3, 4], 4, 5,1);
-const ruta2 = new Ruta(2, 'ruta2', [1, 1], [2, 2], 30, 1, [1, 2], 5, 6,2);
-coleccionRutas.addRuta(ruta1);
-coleccionRutas.addRuta(ruta2);
-*/
-
 coleccionRetos = new JsonColeccionRetos();
-/*
-const reto1 = new Reto(1, 'reto1',['ruta1','ruta2'], 0, 1000, [1,2,3],1);
-const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4],2);
-coleccionRetos.addReto(reto1);
-coleccionRetos.addReto(reto2);
-*/
 
 /**
  * comandosMenu
  */
 enum ComandosMenu {
   BorrarUsuario = 'Borrar usuario',
-  MostrarUsuarios = 'Mostrar usuarios',
+  promptMostrarUsuarios = 'Mostrar usuarios',
   CrearRuta = 'Crear ruta',
   BorrarRuta = 'Borrar ruta',
   MostrarRutas = 'Mostrar rutas',
@@ -80,6 +78,63 @@ enum comandosIniciales {
   Salir = 'Salir'
 }
 
+/**
+ * comandosOrdenarRutas
+ */
+enum comandosOrdenarRutas {
+  OrdenAlfabeticoAscendente = 'Orden alfabético ascendente',
+  OrdenAlfabeticoDescendente = 'Orden alfabético descendente',
+  CantidadDeUsuariosAscendente = 'Cantidad de usuarios ascendente',
+  CantidadDeUsuariosDescendente = 'Cantidad de usuarios descendente',
+  LongitudDeRutasAscendente = 'Longitud de rutas ascendente',
+  LongitudDeRutasDescendente = 'Longitud de rutas descendente',
+  CalificacionMediaAscendente = 'Calificación media ascendente',
+  CalificacionMediaDescendente = 'Calificación media descendente',
+  ActividadAscendente = 'Por actividad ascendente',
+  ActividadDescendente = 'Por actividad descendente',
+}
+
+/**
+ * comandosOrdenarUsuarios
+ */
+enum comandosOrdenarUsuarios {
+  OrdenAlfabeticoAscendente = 'Orden alfabético ascendente',
+  OrdenAlfabeticoDescendente = 'Orden alfabético descendente',
+  PorCantidadDeKmAscendenteSemanal = 'Por cantidad de km ascendente esta semana',
+  PorCantidadDeKmDescendenteSemanal = 'Por cantidad de km descendente esta semana',
+  PorCantidadDeKmAscendenteMensual = 'Por cantidad de km ascendente este mes',
+  PorCantidadDeKmDescendenteMensual = 'Por cantidad de km descendente este mes',
+  PorCantidadDeKmAscendenteAnual = 'Por cantidad de km ascendente este año',
+  PorCantidadDeKmDescendenteAnual = 'Por cantidad de km descendente este año',
+}
+
+/**
+ * comandosOrdenarGrupos
+ */
+enum comandosOrdenarGrupos {
+  OrdenAlfabeticoAscendente = 'Orden alfabético ascendente',
+  OrdenAlfabeticoDescendente = 'Orden alfabético descendente',
+  PorCantidadDeKmAscendenteSemanal = 'Por cantidad de km ascendente esta semana',
+  PorCantidadDeKmDescendenteSemanal = 'Por cantidad de km descendente esta semana',
+  PorCantidadDeKmAscendenteMensual = 'Por cantidad de km ascendente este mes',
+  PorCantidadDeKmDescendenteMensual = 'Por cantidad de km descendente este mes',
+  PorCantidadDeKmAscendenteAnual = 'Por cantidad de km ascendente este año',
+  PorCantidadDeKmDescendenteAnual = 'Por cantidad de km descendente este año',
+  CantidadDeMiembrosAscendente = 'Cantidad de miembros ascendente',
+  CantidadDeMiembrosDescendente = 'Cantidad de miembros descendente',
+}
+
+/**
+ * comandosOrdenarRetos
+ */
+enum comandosOrdenarRetos {
+  OrdenAlfabeticoAscendente = 'Orden alfabético ascendente',
+  OrdenAlfabeticoDescendente = 'Orden alfabético descendente',
+  PorCantidadDeKmAscendente = 'Por cantidad de km ascendente',
+  PorCantidadDeKmDescendente = 'Por cantidad de km descendente',
+  CantidadDeMiembrosAscendente = 'Cantidad de miembros ascendente',
+  CantidadDeMiembrosDescendente = 'Cantidad de miembros descendente',
+}
 /**
  * Pregunta al usuario qué comando desea ejecutar
  * y ejecuta el comando correspondiente.
@@ -107,16 +162,6 @@ function promptCrearUsuario() : void {
       type: 'input',
       name: 'amigos',
       message: 'Introduce los amigos del usuario',
-      /**validate: function(input: string) {
-        // Validar que la entrada es una lista separada por comas de números enteros
-        const numeros = input.split(',');
-        for (const numero of numeros) {
-          if (!/^\d+$/.test(numero)) {
-            return 'Debes ingresar una lista separada por comas de números enteros.';
-          }
-        }
-        return true;
-      },*/
       filter: function(input: string) {
         // Convertir la entrada en un array de enteros
         return input.split(',').map(numero => parseInt(numero));
@@ -126,19 +171,6 @@ function promptCrearUsuario() : void {
       type : 'input',
       name : 'grupos_amigos',
       message : 'Introduce los grupos de amigos del usuario',
-      /**validate: function(input: string) {
-        // Validar que la entrada es una lista separada por puntos de listas separadas por comas de números enteros
-        const grupos = input.split('.');
-        fComprobarUsuarioor (const grupo of grupos) {
-          const numeros = grupo.split(',');
-          for (const numero of numeros) {
-            if (!/^\d+$/.test(numero)) {
-              return 'Debes ingresar una lista separada por puntos de listas separadas por comas de números enteros.';
-            }
-          }
-        }
-        return true;
-      },*/
       filter: function(input: string) {
         // Convertir la entrada en un array de arrays de enteros
         const grupos = input.split('.');
@@ -149,19 +181,6 @@ function promptCrearUsuario() : void {
       type: 'input',
       name: 'estadisticas',
       message: 'Introduce las estadisticas del usuario',
-      /**validate: function(input: string) {
-        // Validar que la entrada es una lista separada por puntos de listas separadas por comas de números enteros
-        const grupos = input.split('.');
-        for (const grupo of grupos) {
-          const numeros = grupo.split(',');
-          for (const numero of numeros) {
-            if (!/^\d+$/.test(numero)) {
-              return 'Debes ingresar una lista separada por puntos de listas separadas por comas de números enteros.';
-            }
-          }
-        }
-        return true;
-      },*/
       filter: function(input: string) {
         // Convertir la entrada en un array de arrays de enteros
         const grupos = input.split('.');
@@ -172,16 +191,6 @@ function promptCrearUsuario() : void {
       type : 'input',
       name : 'rutas_favoritas',
       message : 'Introduce las rutas favoritas del usuario',
-      /**validate: function(input: string) {
-        // Validar que la entrada es una lista separada por comas de números enteros
-        const numeros = input.split(',');
-        for (const numero of numeros) {
-          if (!/^\d+$/.test(numero)) {
-            return 'Debes ingresar una lista separada por comas de números enteros.';
-          }
-        }
-        return true;
-      },*/
       filter: function(input) {
         // Convertir la entrada en un array de enteros
         return input.split(',').map(numero => parseInt(numero));
@@ -191,16 +200,6 @@ function promptCrearUsuario() : void {
       type : 'input',
       name : 'retos',
       message : 'Introduce los retos del usuario',
-      /**validate: function(input:string) {
-        // Validar que la entrada es una lista separada por comas de números enteros
-        const numeros = input.split(',');
-        for (const numero of numeros) {
-          if (!/^\d+$/.test(numero)) {
-            return 'Debes ingresar una lista separada por comas de números enteros.';
-          }
-        }
-        return true;
-      },*/
       filter: function(input) {
         // Convertir la entrada en un array de enteros
         return input.split(',').map(numero => parseInt(numero));
@@ -210,19 +209,6 @@ function promptCrearUsuario() : void {
       type : 'input',
       name : 'historicos',
       message : 'Introduce los historicos del usuario',
-      /**validate: function(input:string) {
-        // Validar que la entrada es una lista separada por puntos de listas separadas por comas de números enteros
-        const grupos = input.split('.');
-        for (const grupo of grupos) {
-          const numeros = grupo.split(',');
-          for (const numero of numeros) {
-            if (!/^\d+$/.test(numero)) {
-              return 'Debes ingresar una lista separada por puntos de listas separadas por comas de números enteros.';
-            }
-          }
-        }
-        return true;
-      },*/
       filter: function(input) {
         // Convertir la entrada en un array de arrays con elementos de cadena y número
         const arrays = input.split('.');
@@ -238,7 +224,7 @@ function promptCrearUsuario() : void {
     },
     ]).then((respuestas) => {
       const nuevoUsuario = new Usuario(respuestas.nombre, parseInt(respuestas.id), parseInt(respuestas.actividades), respuestas.amigos,
-        respuestas.grupos_amigos, respuestas.estadisticas, respuestas.rutas_favoritas, respuestas.retos, respuestas.historicos);
+      respuestas.grupos_amigos, respuestas.estadisticas, respuestas.rutas_favoritas, respuestas.retos, respuestas.historicos);
       coleccionUsuarios.addUsuario(nuevoUsuario);
       console.log('Usuario creado exitosamente.');
       console.log(coleccionUsuarios.getUsuarios());
@@ -249,11 +235,48 @@ function promptCrearUsuario() : void {
  * Muestra los usuarios
  * @returns {void}
  */
-function MostrarUsuarios() {
+function promptMostrarUsuarios() {
   console.clear();
-  let variable = coleccionUsuarios.getUsuarios();
-  variable.forEach((usuario) => {
-    console.log(usuario.GetNombre(), usuario.GetId());
+  inquirer.prompt({
+    type: 'list',
+    name: 'id',
+    message: '¿Cómo quiere ordenar los usuarios?',
+    choices: Object.values(comandosOrdenarUsuarios)
+  }).then((respuestas) => {
+    switch(respuestas['id']) {
+      case comandosOrdenarUsuarios.OrdenAlfabeticoAscendente:
+        coleccionUsuarios.ordenarUsuariosPorNombreAlfabetico(true);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.OrdenAlfabeticoDescendente:
+        coleccionUsuarios.ordenarUsuariosPorNombreAlfabetico(false);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmAscendenteAnual:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(true,2);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmDescendenteAnual:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(false,2);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmAscendenteMensual:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(true,1);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmDescendenteMensual:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(false,1);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmAscendenteSemanal:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(true,0);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+      case comandosOrdenarUsuarios.PorCantidadDeKmDescendenteSemanal:
+        coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(false,0);
+        ImprimirUsuario(coleccionUsuarios);
+        break;
+    }
   });
 }
 
@@ -279,7 +302,7 @@ function IniciarSesion(id: number) : number {
  * Borra un usuario
  * @returns {void}
  */
-function BorrarUsuario(idUsuarioCreador:number) {
+function BorrarUsuario(idUsuarioCreador:number): void {
   let variable = coleccionUsuarios.getNumeroUsuarios();
   coleccionUsuarios.deleteUsuario(idUsuarioCreador);
   if (variable === coleccionUsuarios.getNumeroUsuarios()) {
@@ -372,18 +395,17 @@ function promptBorrarRuta(idUsuarioCreador: number) : void {
     name: 'id',
     message: 'Introduce el id de la ruta que quieres borrar'
   }).then((respuestas) => {
-    let variable = coleccionRutas.getNumeroRutas();
-    if (idUsuarioCreador === coleccionRutas.getRuta(parseInt(respuestas.id)).GetIdCreador()) {
-      coleccionRutas.deleteRuta(parseInt(respuestas.id));
-      if (variable === coleccionRutas.getNumeroRutas()) {
-        console.log('La ruta no existe');
+    if (coleccionRutas.getRuta(parseInt(respuestas.id)) !== undefined) {
+      if (idUsuarioCreador === coleccionRutas.getRuta(parseInt(respuestas.id)).GetIdCreador()) {
+        coleccionRutas.deleteRuta(parseInt(respuestas.id));
+        console.log('Ruta borrada exitosamente');
       }
       else {
-        console.log('Ruta borrada exitosamente');
+        console.log('No puedes borrar una ruta que no has creado');
       }
     }
     else {
-      console.log('No puedes borrar una ruta que no has creado');
+      console.log('La ruta no existe');
     }
   });
 }
@@ -394,9 +416,53 @@ function promptBorrarRuta(idUsuarioCreador: number) : void {
  */
 function MostrarRutas() {
   console.clear();
-  let variable = coleccionRutas.getRutas();
-  variable.forEach((ruta) => {
-    console.log(ruta.GetNombre(), ruta.GetId());
+  inquirer.prompt({
+    type: 'list',
+    name: 'id',
+    message: '¿Cómo quiere ordenar las rutas?',
+    choices: Object.values(comandosOrdenarRutas)
+  }).then((respuestas) => {
+    switch(respuestas['id']) {
+      case comandosOrdenarRutas.OrdenAlfabeticoAscendente:
+        coleccionRutas.ordenarRutasPorNombreAlfabetico(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.OrdenAlfabeticoDescendente:
+        coleccionRutas.ordenarRutasPorNombreAlfabetico(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CantidadDeUsuariosAscendente:
+        coleccionRutas.ordenarRutasPorCantidadUsuarios(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CantidadDeUsuariosDescendente:
+        coleccionRutas.ordenarRutasPorCantidadUsuarios(false);
+        ImprimirRutas(coleccionRutas);
+      break;
+      case comandosOrdenarRutas.LongitudDeRutasAscendente:
+        coleccionRutas.ordenarRutasPorDistancia(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.LongitudDeRutasDescendente:
+        coleccionRutas.ordenarRutasPorDistancia(false);
+        break;
+      case comandosOrdenarRutas.CalificacionMediaAscendente:
+        coleccionRutas.ordenarRutasPorCalificacionMedia(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CalificacionMediaDescendente:
+        coleccionRutas.ordenarRutasPorCalificacionMedia(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.ActividadAscendente:
+        coleccionRutas.ordenarRutasPorActividad(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.ActividadDescendente:
+        coleccionRutas.ordenarRutasPorActividad(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+    }
   });
 }
 
@@ -489,19 +555,17 @@ function promptBorrarGrupo (idUsuarioCreador: number) : void {
     name: 'id',
     message: 'Introduce el id del grupo que quieres borrar'
   }).then((respuestas) => {
-    let variable = coleccionGrupos.getNumeroGrupos();
-    if (idUsuarioCreador === coleccionGrupos.getGrupo(parseInt(respuestas.id)).GetIdCreador()) {
-      coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
-      coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
-      if (variable === coleccionGrupos.getNumeroGrupos()) {
-        console.log('El grupo no existe');
+    if (coleccionGrupos.getGrupo(parseInt(respuestas.id)) !== undefined) {
+      if (idUsuarioCreador === coleccionGrupos.getGrupo(parseInt(respuestas.id)).GetIdCreador()) {
+        coleccionGrupos.deleteGrupo(parseInt(respuestas.id));
+        console.log('Grupo borrado exitosamente');
       }
       else {
-        console.log('Grupo borrado exitosamente');
+        console.log('No puedes borrar un grupo que no has creado');
       }
     }
     else {
-      console.log('No puedes borrar un grupo que no has creado');
+      console.log('El grupo no existe');
     }
   });
 }
@@ -512,9 +576,50 @@ function promptBorrarGrupo (idUsuarioCreador: number) : void {
  */
 function MostrarGrupos() {
   console.clear();
-  let variable = coleccionGrupos.getGrupos();
-  variable.forEach((grupo) => {
-    console.log(grupo.GetNombre(), grupo.GetId());
+  inquirer.prompt({
+    type: 'list',
+    name: 'id',
+    message: '¿Cómo quiere ordenar los grupos?',
+    choices: Object.values(comandosOrdenarGrupos)
+  }).then((respuestas) => {
+    switch(respuestas['id']) {
+      case comandosOrdenarGrupos.OrdenAlfabeticoAscendente:
+        coleccionGrupos.ordenarGruposPorNombreAlfabetico(true);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.OrdenAlfabeticoDescendente:
+        coleccionGrupos.ordenarGruposPorNombreAlfabetico(false);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.CantidadDeMiembrosAscendente:
+        coleccionGrupos.ordenarGruposPorCantidadDeIntegrantes(true);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.CantidadDeMiembrosDescendente:
+        coleccionGrupos.ordenarGruposPorCantidadDeIntegrantes(false);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.PorCantidadDeKmAscendenteSemanal:
+        coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true,0);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.PorCantidadDeKmDescendenteSemanal:
+        coleccionGrupos.ordenarGruposPorDistanciaRecorrida(false,0);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.PorCantidadDeKmAscendenteMensual:
+        coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true,1);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.PorCantidadDeKmDescendenteMensual:
+        coleccionGrupos.ordenarGruposPorDistanciaRecorrida(false,1);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+      case comandosOrdenarGrupos.PorCantidadDeKmAscendenteAnual:
+        coleccionGrupos.ordenarGruposPorDistanciaRecorrida(true,2);
+        ImprimirGrupos(coleccionGrupos);
+        break;
+    }
   });
 }
 /**
@@ -580,19 +685,17 @@ function promptBorrarReto (idUsuarioCreador: number) : void {
     name: 'id',
     message: 'Introduce el id del reto que quieres borrar'
   }).then((respuestas) => {
-    let variable = coleccionRetos.getNumeroRetos();
-    if (idUsuarioCreador === coleccionRetos.getReto(parseInt(respuestas.id)).GetIdCreador()) {
-      coleccionRetos.deleteReto(parseInt(respuestas.id));
-      coleccionRetos.deleteReto(parseInt(respuestas.id));
-      if (variable === coleccionRetos.getNumeroRetos()) {
-        console.log('El reto no existe');
+    if (coleccionRetos.getReto(parseInt(respuestas.id)) !== undefined) {
+      if (idUsuarioCreador === coleccionRetos.getReto(parseInt(respuestas.id)).GetIdCreador()) {
+        coleccionRetos.deleteReto(parseInt(respuestas.id));
+        console.log('Reto borrado exitosamente');
       }
       else {
-        console.log('Reto borrado exitosamente');
+        console.log('No puedes borrar un reto que no has creado');
       }
     }
     else {
-      console.log('No puedes borrar un Reto que no has creado');
+      console.log('El reto no existe');
     }
   });
 }
@@ -603,9 +706,38 @@ function promptBorrarReto (idUsuarioCreador: number) : void {
  */
 function MostrarRetos() {
   console.clear();
-  let variable = coleccionRetos.getRetos();
-  variable.forEach((reto) => {
-    console.log(reto.GetNombre(), reto.GetId());
+  inquirer.prompt({
+    type: 'list',
+    name: 'id',
+    message: '¿Cómo quiere ordenar los retos?',
+    choices: Object.values(comandosOrdenarRetos)
+  }).then((respuestas) => {
+    switch(respuestas['id']) {
+      case comandosOrdenarRetos.OrdenAlfabeticoAscendente:
+        coleccionRetos.ordenarRetosPorNombreAlfabetico(true);
+        ImprimirRetos(coleccionRetos);
+        break;
+      case comandosOrdenarRetos.OrdenAlfabeticoDescendente:
+        coleccionRetos.ordenarRetosPorNombreAlfabetico(false);
+        ImprimirRetos(coleccionRetos);
+        break;
+      case comandosOrdenarRetos.PorCantidadDeKmAscendente:
+        coleccionRetos.ordenarRetosPorDistanciaRecorrida(true);
+        ImprimirRetos(coleccionRetos);
+        break;
+      case comandosOrdenarRetos.PorCantidadDeKmDescendente:
+        coleccionRetos.ordenarRetosPorDistanciaRecorrida(false);
+        ImprimirRetos(coleccionRetos);
+        break;
+      case comandosOrdenarRetos.CantidadDeMiembrosAscendente:
+        coleccionRetos.ordenarRetosPorCantidadDeUsuarios(true);
+        ImprimirRetos(coleccionRetos);
+        break;
+      case comandosOrdenarRetos.CantidadDeMiembrosDescendente:
+        coleccionRetos.ordenarRetosPorCantidadDeUsuarios(false);
+        ImprimirRetos(coleccionRetos);
+        break;
+    }
   });
 }
 
@@ -651,8 +783,8 @@ function main(idUsuarioCreador: number): void {
     switch(respuestas['comando']) {
       case ComandosMenu.Salir:
         break;
-      case ComandosMenu.MostrarUsuarios:
-        MostrarUsuarios();
+      case ComandosMenu.promptMostrarUsuarios:
+        promptMostrarUsuarios();
         break;
       case ComandosMenu.BorrarUsuario:
         BorrarUsuario(idUsuarioCreador);

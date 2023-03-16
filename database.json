@@ -1,0 +1,1797 @@
+{
+  "user": [
+    {
+      "nombre": "Usuario1",
+      "id": 1,
+      "actividades": 0,
+      "amigos": [
+        2,
+        3
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario2",
+      "id": 2,
+      "actividades": 2,
+      "amigos": [
+        1,
+        3
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario3",
+      "id": 3,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario4",
+      "id": 4,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario5",
+      "id": 5,
+      "actividades": 2,
+      "amigos": [
+        1,
+        4,
+        3
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario6",
+      "id": 6,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2,
+        3
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          6,
+          6,
+          6
+        ],
+        [
+          6,
+          6,
+          6
+        ],
+        [
+          6,
+          6,
+          6
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario7",
+      "id": 7,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          7,
+          7,
+          7
+        ],
+        [
+          7,
+          7,
+          7
+        ],
+        [
+          7,
+          7,
+          7
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario8",
+      "id": 8,
+      "actividades": 2,
+      "amigos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario9",
+      "id": 9,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          9,
+          9,
+          9
+        ],
+        [
+          9,
+          9,
+          9
+        ],
+        [
+          9,
+          9,
+          9
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario10",
+      "id": 10,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10
+        ],
+        [
+          10,
+          10,
+          10
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario11",
+      "id": 11,
+      "actividades": 2,
+      "amigos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          11,
+          11,
+          11
+        ],
+        [
+          11,
+          11,
+          11
+        ],
+        [
+          11,
+          11,
+          11
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario12",
+      "id": 12,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          12,
+          12,
+          12
+        ],
+        [
+          12,
+          12,
+          12
+        ],
+        [
+          12,
+          12,
+          12
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario13",
+      "id": 13,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          13,
+          13,
+          13
+        ],
+        [
+          13,
+          13,
+          13
+        ],
+        [
+          13,
+          13,
+          13
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario14",
+      "id": 14,
+      "actividades": 2,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          14,
+          14,
+          14
+        ],
+        [
+          14,
+          14,
+          14
+        ],
+        [
+          14,
+          14,
+          14
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario15",
+      "id": 15,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          15,
+          15,
+          15
+        ],
+        [
+          15,
+          15,
+          15
+        ],
+        [
+          15,
+          15,
+          15
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario16",
+      "id": 16,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          16,
+          16,
+          16
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario17",
+      "id": 17,
+      "actividades": 2,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          17,
+          17,
+          17
+        ],
+        [
+          17,
+          17,
+          17
+        ],
+        [
+          17,
+          17,
+          17
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario18",
+      "id": 18,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario19",
+      "id": 19,
+      "actividades": 1,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          19,
+          19,
+          19
+        ],
+        [
+          19,
+          19,
+          19
+        ],
+        [
+          19,
+          19,
+          19
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "nombre": "Usuario20",
+      "id": 20,
+      "actividades": 2,
+      "amigos": [
+        1,
+        2,
+        3,
+        4,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "estadisticas": [
+        [
+          20,
+          20,
+          20
+        ],
+        [
+          20,
+          20,
+          20
+        ],
+        [
+          20,
+          20,
+          20
+        ]
+      ],
+      "rutas_favoritas": [
+        1,
+        2
+      ],
+      "retos": [
+        1,
+        2
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    }
+  ],
+  "group": [
+    {
+      "id": 1,
+      "nombre": "Grupo1",
+      "miembrosGrupo": [
+        1,
+        2,
+        3
+      ],
+      "estadisticas": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Grupo2",
+      "miembrosGrupo": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "nombre": "Grupo1",
+      "miembrosGrupo": [
+        1,
+        2,
+        3
+      ],
+      "estadisticas": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ],
+      "idCreador": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Grupo2",
+      "miembrosGrupo": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ],
+      "idCreador": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Grupo3",
+      "miembrosGrupo": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ],
+        [
+          "ruta6",
+          1
+        ]
+      ],
+      "idCreador": 4
+    },
+    {
+      "id": 4,
+      "nombre": "Grupo4",
+      "miembrosGrupo": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        5,
+        6,
+        7
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ],
+      "idCreador": 6
+    },
+    {
+      "id": 5,
+      "nombre": "Grupo5",
+      "miembrosGrupo": [
+        7,
+        8,
+        9,
+        4
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        4,
+        8,
+        9
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ],
+      "idCreador": 9
+    }
+  ],
+  "route": [
+    {
+      "id": 1,
+      "nombre": "ruta1",
+      "geo_ini": [
+        1,
+        1
+      ],
+      "geo_fin": [
+        2,
+        2
+      ],
+      "longitud": 20,
+      "desnivel": 1,
+      "usuarios": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "actividad": 4,
+      "calificacion": 5
+    },
+    {
+      "id": 2,
+      "nombre": "ruta2",
+      "geo_ini": [
+        1,
+        1
+      ],
+      "geo_fin": [
+        2,
+        2
+      ],
+      "longitud": 30,
+      "desnivel": 1,
+      "usuarios": [
+        1,
+        2
+      ],
+      "actividad": 5,
+      "calificacion": 6
+    },
+    {
+      "id": 3,
+      "nombre": "ruta3",
+      "geo_ini": [
+        5,
+        5
+      ],
+      "geo_fin": [
+        6,
+        6
+      ],
+      "longitud": 40,
+      "desnivel": 0,
+      "usuarios": [
+        1,
+        2,
+        3
+      ],
+      "actividad": 6,
+      "calificacion": 7,
+      "idCreador": 6
+    },
+    {
+      "id": 4,
+      "nombre": "ruta4",
+      "geo_ini": [
+        7,
+        7
+      ],
+      "geo_fin": [
+        8,
+        8
+      ],
+      "longitud": 50,
+      "desnivel": 2,
+      "usuarios": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "actividad": 7,
+      "calificacion": 8,
+      "idCreador": 5
+    },
+    {
+      "id": 5,
+      "nombre": "ruta5",
+      "geo_ini": [
+        9,
+        9
+      ],
+      "geo_fin": [
+        10,
+        10
+      ],
+      "longitud": 60,
+      "desnivel": 1,
+      "usuarios": [
+        1,
+        2
+      ],
+      "actividad": 8,
+      "calificacion": 9,
+      "idCreador": 4
+    },
+    {
+      "id": 6,
+      "nombre": "ruta6",
+      "geo_ini": [
+        11,
+        11
+      ],
+      "geo_fin": [
+        12,
+        12
+      ],
+      "longitud": 70,
+      "desnivel": 0,
+      "usuarios": [
+        1,
+        2,
+        3
+      ],
+      "actividad": 9,
+      "calificacion": 10,
+      "idCreador": 5
+    },
+    {
+      "id": 7,
+      "nombre": "ruta7",
+      "geo_ini": [
+        13,
+        13
+      ],
+      "geo_fin": [
+        14,
+        14
+      ],
+      "longitud": 80,
+      "desnivel": 1,
+      "usuarios": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "actividad": 10,
+      "calificacion": 11,
+      "idCreador": 15
+    },
+    {
+      "id": 8,
+      "nombre": "ruta8",
+      "geo_ini": [
+        15,
+        15
+      ],
+      "geo_fin": [
+        16,
+        16
+      ],
+      "longitud": 90,
+      "desnivel": 2,
+      "usuarios": [
+        1,
+        2
+      ],
+      "actividad": 11,
+      "calificacion": 12,
+      "idCreador": 9
+    },
+    {
+      "id": 9,
+      "nombre": "ruta9",
+      "geo_ini": [
+        17,
+        17
+      ],
+      "geo_fin": [
+        18,
+        18
+      ],
+      "longitud": 100,
+      "desnivel": 1,
+      "usuarios": [
+        1,
+        2,
+        3
+      ],
+      "actividad": 12,
+      "calificacion": 13,
+      "idCreador": 7
+    },
+    {
+      "id": 10,
+      "nombre": "ruta10",
+      "geo_ini": [
+        19,
+        19
+      ],
+      "geo_fin": [
+        20,
+        20
+      ],
+      "longitud": 110,
+      "desnivel": 0,
+      "usuarios": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "actividad": 13,
+      "calificacion": 14,
+      "idCreador": 5
+    }
+  ],
+  "challenge": [
+    {
+      "id": 1,
+      "nombre": "reto1",
+      "rutasFormantes": [
+        "ruta1",
+        "ruta2"
+      ],
+      "tipo": 0,
+      "kmTotales": 1000,
+      "UsuariosActivos": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "reto2",
+      "rutasFormantes": [
+        "ruta1",
+        "ruta2"
+      ],
+      "tipo": 1,
+      "kmTotales": 2000,
+      "UsuariosActivos": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "reto3",
+      "rutasFormantes": [
+        "ruta4",
+        "ruta8"
+      ],
+      "tipo": 1,
+      "kmTotales": 2000,
+      "UsuariosActivos": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "idCreador": 7
+    }
+  ]
+}
