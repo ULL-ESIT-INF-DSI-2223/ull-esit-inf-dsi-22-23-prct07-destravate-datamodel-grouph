@@ -5,7 +5,7 @@ import * as FileSync from "lowdb/adapters/FileSync";
 
 type schemaType = {
   challenge:{ id: number, nombre: string, rutasFormantes: string[], tipo: number,
-    kmTotales: number, UsuariosActivos: number[]}[]
+    kmTotales: number, UsuariosActivos: number[], idCreador: number}[]
 }
 
 /**
@@ -23,7 +23,7 @@ export class JsonColeccionRetos extends ColeccionRetos {
     if(this.database.has("challenge").value()) {
       let dbItems = this.database.get("challenge").value();
       dbItems.forEach((item) => {
-        let reto = new Reto(item.id, item.nombre, item.rutasFormantes, item.tipo, item.kmTotales, item.UsuariosActivos);
+        let reto = new Reto(item.id, item.nombre, item.rutasFormantes, item.tipo, item.kmTotales, item.UsuariosActivos, item.idCreador);
         this.addReto(reto);
       });
     }

@@ -6,16 +6,18 @@
  * @param tipo
  * @param kmTotales
  * @param UsuariosActivos
+ * @param idCreador
  * @method GetId
  * @method GetNombre
  * @method GetRutasFormantes
  * @method GetTipo
  * @method GetKmTotales
  * @method GetUsuariosActivos
+ * @method GetIdCreador
  */
 export class Reto{
   constructor(private id: number, private nombre: string, private rutasFormantes: string[], private tipo: number,
-    private kmTotales: number, private UsuariosActivos: number[]) {
+    private kmTotales: number, private UsuariosActivos: number[], private idCreador: number) {
   }
   /**
    * @method GetId
@@ -52,5 +54,12 @@ export class Reto{
    */
   GetUsuariosActivos() {
     return this.UsuariosActivos;
+  }
+
+  /**
+   * @method GetIdCreador
+   */
+  GetIdCreador() {
+    return this.idCreador;
   }
 }

@@ -1,12 +1,14 @@
 import { Grupo, tipo_historico} from './grupo';
 import { ColeccionGrupos} from './coleccionGrupos';
+import { Usuario } from '../usuario/usuario';
+import { ColeccionUsuarios } from '../usuario/coleccionUsuarios';
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
 
 
 type schemaType = {
   group:{ id: number, nombre: string, miembrosGrupo: number[],
-    estadisticas: number[][], clasificacionUsuarios: number[], RutasFavoritas: number[], historicos : tipo_historico }[]
+    estadisticas: number[][], clasificacionUsuarios: number[], RutasFavoritas: number[], historicos : tipo_historico, idCreador :number }[]
 }
 
 /**
@@ -24,7 +26,7 @@ export class JsonColeccionGrupos extends ColeccionGrupos {
     if(this.database.has("group").value()) {
       let dbItems = this.database.get("group").value();
       dbItems.forEach((item) => {
-        let grupo = new Grupo(item.id, item.nombre, item.miembrosGrupo, item.estadisticas, item.clasificacionUsuarios, item.RutasFavoritas, item.historicos);
+        let grupo = new Grupo(item.id, item.nombre, item.miembrosGrupo, item.estadisticas, item.clasificacionUsuarios, item.RutasFavoritas, item.historicos, item.idCreador);
         this.addGrupo(grupo);
       });
     }

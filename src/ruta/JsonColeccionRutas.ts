@@ -7,7 +7,7 @@ import * as FileSync from "lowdb/adapters/FileSync";
 // Tipo de datos como el de la clase ruta
 type schemaType = {
   route: {id: number, nombre: string, geo_ini : [number, number], geo_fin : [number, number],
-    longitud : number, desnivel : number, usuarios : number[], actividad : number, calificacion : number}[]
+    longitud : number, desnivel : number, usuarios : number[], actividad : number, calificacion : number, idCreador:number}[]
 }
 
 /**
@@ -25,7 +25,7 @@ export class JsonColeccionRutas extends ColeccionRutas {
     if(this.database.has("route").value()) {
       let dbItems = this.database.get("route").value();
       dbItems.forEach((item) => {
-        let ruta = new Ruta(item.id, item.nombre, item.geo_ini, item.geo_fin, item.longitud, item.desnivel, item.usuarios, item.actividad, item.calificacion);
+        let ruta = new Ruta(item.id, item.nombre, item.geo_ini, item.geo_fin, item.longitud, item.desnivel, item.usuarios, item.actividad, item.calificacion, item.idCreador);
         this.addRuta(ruta);
       });
     }

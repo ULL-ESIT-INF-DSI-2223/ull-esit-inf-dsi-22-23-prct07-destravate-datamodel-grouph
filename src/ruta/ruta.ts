@@ -10,6 +10,7 @@
  * @param usuarios Usuarios que han realizado la ruta
  * @param actividad Estado de la ruta
  * @param calificacion Calificación de la ruta
+ * @param idCreador Identificador del usuario que crea la ruta
  * @method GetId
  * @method GetNombre
  * @method GetGeoIni
@@ -19,10 +20,12 @@
  * @method GetUsuarios
  * @method GetActividad
  * @method GetCalificacion
+ * @method GetIdCreador
  */
 export class Ruta {
   constructor(private id: number, private nombre: string, private geo_ini : [number, number], private geo_fin : [number, number],
-    private longitud : number, private desnivel : number, private usuarios : number[], private actividad : number, private calificacion : number) {
+    private longitud : number, private desnivel : number, private usuarios : number[], private actividad : number, private calificacion : number,
+    private idCreador : number) {
   }
   /**
    * @method GetId
@@ -77,5 +80,12 @@ export class Ruta {
    */
   GetCalificacion() {
     return this.calificacion;
+  }
+
+  /**
+   * @method GetIdCreador
+   */
+  GetIdCreador() {
+    return this.idCreador;
   }
 }

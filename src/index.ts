@@ -29,28 +29,27 @@ coleccionUsuarios.addUsuario(usuario2);
 coleccionUsuarios.addUsuario(usuario3);
 
 coleccionGrupos = new JsonColeccionGrupos();
-const grupo1 = new Grupo(1, 'Grupo1', [1,2,3],[[1,1,1],[1,1,1],[1,1,1]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]]);
-const grupo2 = new Grupo(2, 'Grupo2', [1,2,3,4],[[2,2,2],[2,2,2],[2,2,2]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]]);
+const grupo1 = new Grupo(1, 'Grupo1', [1,2,3],[[1,1,1],[1,1,1],[1,1,1]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],1);
+const grupo2 = new Grupo(2, 'Grupo2', [1,2,3,4],[[2,2,2],[2,2,2],[2,2,2]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],2);
 coleccionGrupos.addGrupo(grupo1);
 coleccionGrupos.addGrupo(grupo2);
 
 coleccionRutas = new JsonColeccionRutas();
-const ruta1 = new Ruta(1, 'ruta1', [1, 1], [2, 2], 20, 1, [1, 2, 3, 4], 4, 5);
-const ruta2 = new Ruta(2, 'ruta2', [1, 1], [2, 2], 30, 1, [1, 2], 5, 6);
+const ruta1 = new Ruta(1, 'ruta1', [1, 1], [2, 2], 20, 1, [1, 2, 3, 4], 4, 5,1);
+const ruta2 = new Ruta(2, 'ruta2', [1, 1], [2, 2], 30, 1, [1, 2], 5, 6,2);
 coleccionRutas.addRuta(ruta1);
 coleccionRutas.addRuta(ruta2);
 
 coleccionRetos = new JsonColeccionRetos();
-const reto1 = new Reto(1, 'reto1',['ruta1','ruta2'], 0, 1000, [1,2,3]);
-const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4]);
+const reto1 = new Reto(1, 'reto1',['ruta1','ruta2'], 0, 1000, [1,2,3],1);
+const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4],2);
 coleccionRetos.addReto(reto1);
 coleccionRetos.addReto(reto2);
 
 /**
- * comandos
+ * comandosMenu
  */
-enum Comandos {
-  CrearUsuario = 'Crear usuario',
+enum ComandosMenu {
   BorrarUsuario = 'Borrar usuario',
   MostrarUsuarios = 'Mostrar usuarios',
   CrearRuta = 'Crear ruta',
@@ -62,6 +61,15 @@ enum Comandos {
   CrearReto = 'Crear reto',
   BorrarReto = 'Borrar reto',
   MostrarRetos = 'Mostrar retos',
+  Salir = 'Salir'
+}
+
+/**
+ * comandosIniciales
+ */
+enum comandosIniciales {
+  CrearUsuario = 'Crear usuario',
+  IniciarSesion = 'Iniciar sesión',
   Salir = 'Salir'
 }
 
@@ -114,7 +122,7 @@ function promptCrearUsuario() : void {
       /**validate: function(input: string) {
         // Validar que la entrada es una lista separada por puntos de listas separadas por comas de números enteros
         const grupos = input.split('.');
-        for (const grupo of grupos) {
+        fComprobarUsuarioor (const grupo of grupos) {
           const numeros = grupo.split(',');
           for (const numero of numeros) {
             if (!/^\d+$/.test(numero)) {
@@ -227,6 +235,7 @@ function promptCrearUsuario() : void {
       coleccionUsuarios.addUsuario(nuevoUsuario);
       console.log('Usuario creado exitosamente.');
       console.log(coleccionUsuarios.getUsuarios());
+      main(nuevoUsuario.GetId());
     });
 }
 /**
@@ -240,6 +249,25 @@ function MostrarUsuarios() {
     console.log(usuario.GetNombre(), usuario.GetId());
   });
 }
+
+/**
+ * funcion que comprueba si un usuario existe y retorna su id
+ * @return number
+ * @param id
+ */
+function promptIniciarSesion(id: number) : number {
+  let variable = coleccionUsuarios.getUsuarios();
+  let i = 0;
+  for (i = 0; i < variable.length; i++) {
+    if (variable[i].GetId() === id) {
+      main(id);
+      //return id;
+    }
+  }
+  console.log('El usuario no existe');
+  return 0;
+}
+
 
 /**
  * Borra un usuario
@@ -267,7 +295,7 @@ function BorrarUsuario() {
  * Crea una ruta
  * @returns {void}
  */
-function promptCrearRuta() : void {
+function promptCrearRuta(idUsuarioCreador:number) : void {
   console.clear();
   inquirer.prompt([
   {
@@ -328,7 +356,7 @@ function promptCrearRuta() : void {
     message: 'Introduce la calificacion de la ruta'
   }]).then((respuestas) => {
     const nuevaRuta = new Ruta(parseInt(respuestas.id), respuestas.nombre, respuestas.punto_inicio, respuestas.punto_fin,
-      parseInt(respuestas.distancia), parseInt(respuestas.desnivel), respuestas.usuarios, parseInt(respuestas.actividad), parseInt(respuestas.calificacion));
+      parseInt(respuestas.distancia), parseInt(respuestas.desnivel), respuestas.usuarios, parseInt(respuestas.actividad), parseInt(respuestas.calificacion), idUsuarioCreador);
     coleccionRutas.addRuta(nuevaRuta);
     console.log('Ruta creada exitosamente.');
   });
@@ -338,7 +366,7 @@ function promptCrearRuta() : void {
  * Borra una ruta
  * @returns {void}
  */
-function promptBorrarRuta() : void {
+function promptBorrarRuta(idUsuarioCreador: number) : void {
   console.clear();
   inquirer.prompt({
     type: 'input',
@@ -372,7 +400,7 @@ function MostrarRutas() {
  * Crea un grupo
  * @returns {void}
  */
-function promptCrearGrupo () : void {
+function promptCrearGrupo (idUsuarioCreador:number) : void {
   console.clear();
   inquirer.prompt([
   {
@@ -440,7 +468,7 @@ function promptCrearGrupo () : void {
     },
   }]).then((respuestas) => {
     const nuevoGrupo = new Grupo(parseInt(respuestas.id), respuestas.nombre, respuestas.miembros, respuestas.estadisticas,
-    respuestas.clasificacion, respuestas.rutas, respuestas.historicos);
+    respuestas.clasificacion, respuestas.rutas, respuestas.historicos, idUsuarioCreador);
     coleccionGrupos.addGrupo(nuevoGrupo);
     console.log('Grupo creado exitosamente.');
   });
@@ -450,7 +478,7 @@ function promptCrearGrupo () : void {
  * Borra un grupo
  * @returns {void}
  */
-function promptBorrarGrupo () : void {
+function promptBorrarGrupo (idUsuarioCreador: number) : void {
   console.clear();
   inquirer.prompt({
     type: 'input',
@@ -483,7 +511,7 @@ function MostrarGrupos() {
  * Crea un reto
  * @returns {void}
  */
-function promptCrearReto () : void {
+function promptCrearReto (idUsuarioCreador:number) : void {
   console.clear();
   inquirer.prompt([
   {
@@ -525,7 +553,7 @@ function promptCrearReto () : void {
     },
   }]).then((respuestas) => {
     const nuevoReto = new Reto(parseInt(respuestas.id), respuestas.nombre, respuestas.rutas, parseInt(respuestas.tipo),
-    parseInt(respuestas.kilometros), respuestas.usuarios);
+    parseInt(respuestas.kilometros), respuestas.usuarios, idUsuarioCreador);
     coleccionRetos.addReto(nuevoReto);
     console.log('Reto creado exitosamente.');
   });
@@ -535,13 +563,14 @@ function promptCrearReto () : void {
  * Borra un reto
  * @returns {void}
  */
-function promptBorrarReto () : void {
+function promptBorrarReto (idUsuarioCreador: number) : void {
   console.clear();
   inquirer.prompt({
     type: 'input',
     name: 'id',
     message: 'Introduce el id del reto que quieres borrar'
   }).then((respuestas) => {
+
     let variable = coleccionRetos.getNumeroRetos();
     coleccionRetos.deleteReto(parseInt(respuestas.id));
     if (variable === coleccionRetos.getNumeroRetos()) {
@@ -565,59 +594,83 @@ function MostrarRetos() {
   });
 }
 
-/**
- * Crea un usuario
- * @returns {void}
- */
-function main(): void {
+
+function InicioMain() {
   console.clear();
   inquirer.prompt({
     type: 'list',
     name: 'comando',
     message: '¿Qué quieres hacer?',
-    choices: Object.values(Comandos),
+    choices: Object.values(comandosIniciales),
   }).then((respuestas) => {
     switch(respuestas['comando']) {
-      case Comandos.Salir:
+      case comandosIniciales.Salir:
         break;
-      case Comandos.CrearUsuario:
-        promptCrearUsuario();
+      case comandosIniciales.CrearUsuario:
+          promptCrearUsuario();
+      break;
+      case comandosIniciales.IniciarSesion:
+        inquirer.prompt({
+          type: 'input',
+          name: 'id',
+          message: 'Introduce el id del usuario',
+        }).then((respuestas) => {
+          promptIniciarSesion(parseInt(respuestas.id));
+      });
+    }
+  });
+}
+
+/**
+ * Crea un usuario
+ * @returns {void}
+ */
+function main(idUsuarioCreador: number): void {
+  console.clear();
+  inquirer.prompt({
+    type: 'list',
+    name: 'comando',
+    message: '¿Qué quieres hacer?',
+    choices: Object.values(ComandosMenu),
+  }).then((respuestas) => {
+    switch(respuestas['comando']) {
+      case ComandosMenu.Salir:
         break;
-      case Comandos.MostrarUsuarios:
+      case ComandosMenu.MostrarUsuarios:
         MostrarUsuarios();
         break;
-      case Comandos.BorrarUsuario:
+      case ComandosMenu.BorrarUsuario:
         BorrarUsuario();
         break;
-      case Comandos.CrearRuta:
-        promptCrearRuta();
+      case ComandosMenu.CrearRuta:
+        promptCrearRuta(idUsuarioCreador);
         break;
-      case Comandos.MostrarRutas:
+      case ComandosMenu.MostrarRutas:
         MostrarRutas();
         break;
-      case Comandos.BorrarRuta:
-        promptBorrarRuta();
+      case ComandosMenu.BorrarRuta:
+        promptBorrarRuta(idUsuarioCreador);
         break;
-      case Comandos.CrearGrupo:
-        promptCrearGrupo();
+      case ComandosMenu.CrearGrupo:
+        promptCrearGrupo(idUsuarioCreador);
         break;
-      case Comandos.MostrarGrupos:
+      case ComandosMenu.MostrarGrupos:
         MostrarGrupos();
         break;
-      case Comandos.BorrarGrupo:
-        promptBorrarGrupo();
+      case ComandosMenu.BorrarGrupo:
+        promptBorrarGrupo(idUsuarioCreador);
         break;
-      case Comandos.CrearReto:
-        promptCrearReto();
+      case ComandosMenu.CrearReto:
+        promptCrearReto(idUsuarioCreador);
         break;
-      case Comandos.MostrarRetos:
+      case ComandosMenu.MostrarRetos:
         MostrarRetos();
         break;
-      case Comandos.BorrarReto:
-        promptBorrarReto();
+      case ComandosMenu.BorrarReto:
+        promptBorrarReto(idUsuarioCreador);
         break;
     }
   })
 }
 
-main();
+InicioMain();

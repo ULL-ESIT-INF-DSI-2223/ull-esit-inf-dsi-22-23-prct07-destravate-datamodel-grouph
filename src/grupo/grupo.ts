@@ -10,6 +10,7 @@ export type tipo_historico = (string | number)[][];
  * @param clasificacionUsuarios Clasificación de los usuarios del grupo
  * @param RutasFavoritas Rutas favoritas del grupo
  * @param historicos Historial de actividades del grupo
+ * @param idCreador Identificador del usuario que crea el grupo
  * @method GetId
  * @method GetNombre
  * @method GetMiembrosGrupo
@@ -17,10 +18,12 @@ export type tipo_historico = (string | number)[][];
  * @method GetClasificacionUsuarios
  * @method GetRutasFavoritas
  * @method GetHistoricos
+ * @method GetIdCreador
  */
 export class Grupo{
   constructor(private id: number, private nombre: string, private miembrosGrupo: number[],
-    private estadisticas: number[][], private clasificacionUsuarios: number[], private RutasFavoritas: number[], private historicos : tipo_historico ) {
+    private estadisticas: number[][], private clasificacionUsuarios: number[], private RutasFavoritas: number[], private historicos : tipo_historico,
+    private idCreador: number) {
   }
 
   /**
@@ -70,5 +73,12 @@ export class Grupo{
    */
   GetHistoricos() {
     return this.historicos;
+  }
+
+  /**
+   * @method GetIdCreador
+   */
+  GetIdCreador() {
+    return this.idCreador;
   }
 }
