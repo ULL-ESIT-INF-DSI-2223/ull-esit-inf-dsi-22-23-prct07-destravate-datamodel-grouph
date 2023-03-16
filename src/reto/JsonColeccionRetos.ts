@@ -1,7 +1,7 @@
 import { Reto } from './reto';
 import { ColeccionRetos } from './coleccionRetos';
-import * as lowdb from "lowdb";
-import * as FileSync from "lowdb/adapters/FileSync";
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
 
 type schemaType = {
   challenge:{ id: number, nombre: string, rutasFormantes: string[], tipo: number,

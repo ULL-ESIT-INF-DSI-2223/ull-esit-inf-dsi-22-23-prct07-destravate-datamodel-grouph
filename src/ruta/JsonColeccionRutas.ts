@@ -1,7 +1,7 @@
 import { Ruta } from "./ruta";
 import { ColeccionRutas } from "./coleccionRutas";
-import * as lowdb from "lowdb";
-import * as FileSync from "lowdb/adapters/FileSync";
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
 
 
 // Tipo de datos como el de la clase ruta

@@ -2,8 +2,8 @@ import { Grupo, tipo_historico} from './grupo';
 import { ColeccionGrupos} from './coleccionGrupos';
 import { Usuario } from '../usuario/usuario';
 import { ColeccionUsuarios } from '../usuario/coleccionUsuarios';
-import * as lowdb from "lowdb";
-import * as FileSync from "lowdb/adapters/FileSync";
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
 
 
 type schemaType = {
