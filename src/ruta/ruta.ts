@@ -85,7 +85,7 @@ export class Ruta {
   /**
    * @method GetIdCreador
    */
-  GetIdCreador() {
+  GetIdCreador(): number {
     return this.idCreador;
   }
 }

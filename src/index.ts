@@ -21,30 +21,37 @@ let coleccionRutas: JsonColeccionRutas;
 let coleccionRetos: JsonColeccionRetos;
 
 coleccionUsuarios = new JsonColeccionUsuarios();
+/*
 const usuario1 = new Usuario('Usuario1', 1, 0, [2,3], [[1, 2],[1, 3]], [[1, 1, 1],[1, 1, 1],[1, 1, 1]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
 const usuario2 = new Usuario('Usuario2', 2, 2, [1,3], [[1, 2],[1, 3]], [[2, 2, 2],[2, 2, 2],[2, 2, 2]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
 const usuario3 = new Usuario('Usuario3', 3, 0, [1,2], [[1, 2],[1, 3]], [[3, 3, 3],[3, 3, 3],[3, 3, 3]], [1, 2], [1, 2], [['ruta1',1],['ruta2',2]]);
 coleccionUsuarios.addUsuario(usuario1);
 coleccionUsuarios.addUsuario(usuario2);
 coleccionUsuarios.addUsuario(usuario3);
-
+*/
 coleccionGrupos = new JsonColeccionGrupos();
+/*
 const grupo1 = new Grupo(1, 'Grupo1', [1,2,3],[[1,1,1],[1,1,1],[1,1,1]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],1);
 const grupo2 = new Grupo(2, 'Grupo2', [1,2,3,4],[[2,2,2],[2,2,2],[2,2,2]], [1,2,3], [1,2,3],[['ruta1', 1],['ruta2',2]],2);
 coleccionGrupos.addGrupo(grupo1);
 coleccionGrupos.addGrupo(grupo2);
+*/
 
 coleccionRutas = new JsonColeccionRutas();
+/*
 const ruta1 = new Ruta(1, 'ruta1', [1, 1], [2, 2], 20, 1, [1, 2, 3, 4], 4, 5,1);
 const ruta2 = new Ruta(2, 'ruta2', [1, 1], [2, 2], 30, 1, [1, 2], 5, 6,2);
 coleccionRutas.addRuta(ruta1);
 coleccionRutas.addRuta(ruta2);
+*/
 
 coleccionRetos = new JsonColeccionRetos();
+/*
 const reto1 = new Reto(1, 'reto1',['ruta1','ruta2'], 0, 1000, [1,2,3],1);
 const reto2 = new Reto(2, 'reto2',['ruta1','ruta2'], 1, 2000, [1,2,3,4],2);
 coleccionRetos.addReto(reto1);
 coleccionRetos.addReto(reto2);
+*/
 
 /**
  * comandosMenu
@@ -255,13 +262,12 @@ function MostrarUsuarios() {
  * @return number
  * @param id
  */
-function promptIniciarSesion(id: number) : number {
+function IniciarSesion(id: number) : number {
   let variable = coleccionUsuarios.getUsuarios();
   let i = 0;
   for (i = 0; i < variable.length; i++) {
     if (variable[i].GetId() === id) {
       main(id);
-      //return id;
     }
   }
   console.log('El usuario no existe');
@@ -368,7 +374,6 @@ function promptBorrarRuta(idUsuarioCreador: number) : void {
   }).then((respuestas) => {
     let variable = coleccionRutas.getNumeroRutas();
     if (idUsuarioCreador === coleccionRutas.getRuta(parseInt(respuestas.id)).GetIdCreador()) {
-      coleccionRutas.deleteRuta(parseInt(respuestas.id));
       coleccionRutas.deleteRuta(parseInt(respuestas.id));
       if (variable === coleccionRutas.getNumeroRutas()) {
         console.log('La ruta no existe');
@@ -625,7 +630,7 @@ function InicioMain() {
           name: 'id',
           message: 'Introduce el id del usuario',
         }).then((respuestas) => {
-          promptIniciarSesion(parseInt(respuestas.id));
+          IniciarSesion(parseInt(respuestas.id));
       });
     }
   });
