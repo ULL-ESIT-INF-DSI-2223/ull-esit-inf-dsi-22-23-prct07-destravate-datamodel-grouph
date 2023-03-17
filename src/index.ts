@@ -314,6 +314,25 @@ function BorrarUsuario(idUsuarioCreador:number): void {
 }
 
 /**
+ * añadir un amigo
+ * @returns {void}
+ * @param idUsuarioCreador
+ */
+function promptAniadirAmigo(idUsuarioCreador:number): void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id del usuario que quieres añadir como amigo'
+  },
+  ]).then((respuestas) => {
+    
+  });
+}
+
+
+/**
  * Crea una ruta
  * @returns {void}
  */
@@ -627,20 +646,35 @@ function MostrarGrupos() {
  * añade un usuario a un grupo
  * @returns {void}
  */
-function promptAnadirUsuarioAGrupo (idUsuarioCreador: number) : void {
+function promptAnadirUsuarioAGrupo (idUsuario: number) : void {
   console.clear();
   inquirer.prompt([
   {
     type: 'input',
     name: 'idGrupo',
-    message: 'Introduce el id del grupo al que te quieres unir',
-  },
-  {
-    type: 'input',
-    name: 'idUsuario',
-    message: 'Introduce el id del usuario que quieres añadir al grupo',
-  }])
+    message: 'Introduce el id del grupo al que te quieres unir'
+  },]).then((respuestas) => {
+    if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)) !== undefined) {
+      if (coleccionUsuarios.getUsuario(parseInt(respuestas.idUsuario)) !== undefined) {
+        if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)).GetMiembrosGrupo().includes(parseInt(respuestas.idUsuario))) {
+          console.log('El usuario ya está en el grupo');
+        }
+        else {
+          coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)).aniadirMiembro(parseInt(respuestas.idUsuario));
+          console.log('Usuario añadido al grupo');
+        }
+      }
+      else {
+        console.log('El usuario no existe');
+      }
+    }
+    else {
+      console.log('El grupo no existe');
+    }
+  }
+  );
 }
+
 /**
  * Crea un reto
  * @returns {void}

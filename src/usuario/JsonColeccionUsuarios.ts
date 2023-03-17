@@ -55,6 +55,7 @@ export class JsonColeccionUsuarios extends ColeccionUsuarios {
     this.storeUsers();
   }
 
+
   /**
    * guarda los usuarios en el fichero JSON
    * @returns void
@@ -62,4 +63,5 @@ export class JsonColeccionUsuarios extends ColeccionUsuarios {
   private storeUsers() {
     this.database.set("user", this.getUsuarios()).write();
   }
+
 }

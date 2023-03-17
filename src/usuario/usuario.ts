@@ -79,4 +79,10 @@ export class Usuario{
   GetHistoricos() {
     return this.historicos;
   }
+  /**
+   * Funcion que añade un amigo al usuario
+   */
+  aniadirAmigo(id_amigo : number) {
+    this.amigos.push(id_amigo);
+  }
 }

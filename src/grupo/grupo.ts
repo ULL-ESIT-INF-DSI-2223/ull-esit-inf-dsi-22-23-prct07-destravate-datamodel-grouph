@@ -81,4 +81,12 @@ export class Grupo{
   GetIdCreador() {
     return this.idCreador;
   }
+
+  /**
+   * añadirMiembro
+   * @param id Identificador del usuario que se añade al grupo
+   */
+  aniadirMiembro(id: number) {
+    this.miembrosGrupo.push(id);
+  }
 }
