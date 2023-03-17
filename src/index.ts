@@ -622,6 +622,25 @@ function MostrarGrupos() {
     }
   });
 }
+
+/**
+ * añade un usuario a un grupo
+ * @returns {void}
+ */
+function promptAnadirUsuarioAGrupo (idUsuarioCreador: number) : void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'idGrupo',
+    message: 'Introduce el id del grupo al que te quieres unir',
+  },
+  {
+    type: 'input',
+    name: 'idUsuario',
+    message: 'Introduce el id del usuario que quieres añadir al grupo',
+  }])
+}
 /**
  * Crea un reto
  * @returns {void}

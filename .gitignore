@@ -1,5 +1,5 @@
-dist/
-node_modules/
-package-lock.json
-.vscode/
+node_modules
+dist
+.nyc_output
+.coveralls.yml
 .js
