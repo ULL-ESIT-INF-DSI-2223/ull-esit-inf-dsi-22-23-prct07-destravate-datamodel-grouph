@@ -13,6 +13,16 @@ import { JsonColeccionRetos } from './reto/JsonColeccionRetos';
 
 const inquirer = require('inquirer');
 
+let coleccionUsuarios: JsonColeccionUsuarios;
+let coleccionGrupos: JsonColeccionGrupos;
+let coleccionRutas: JsonColeccionRutas;
+let coleccionRetos: JsonColeccionRetos;
+
+coleccionUsuarios = new JsonColeccionUsuarios();
+coleccionGrupos = new JsonColeccionGrupos();
+coleccionRutas = new JsonColeccionRutas();
+coleccionRetos = new JsonColeccionRetos();
+
 function ImprimirUsuario(entrada: JsonColeccionUsuarios): void {
   let variable = entrada.getUsuarios();
   variable.forEach((usuario) => {
@@ -25,6 +35,26 @@ function ImprimirRutas(coleccionRutas: JsonColeccionRutas): void {
   variable.forEach((ruta) => {
     console.log(ruta.GetNombre(), ruta.GetId());
   });
+}
+
+function ImprimirInfoRuta(id : number) :void {
+  if(coleccionRutas.getRuta(id) !== undefined){
+    let variable = coleccionRutas.getRuta(id);
+    console.log("La información de la ruta es: ");
+    console.log("Nombre: ", variable.GetNombre());
+    console.log("Id: ", variable.GetId());
+    console.log("Localización de inicio: ", variable.GetGeoIni());
+    console.log("Localización de fin: ", variable.GetGeoFin());
+    console.log("Longitud: ", variable.GetLongitud());
+    console.log("Desnivel: ", variable.GetDesnivel());
+    console.log("Actividad: ", variable.GetActividad());
+    console.log("Calificación: ", variable.GetCalificacion());
+    console.log("Id del creador: ", variable.GetIdCreador());
+    console.log("Id de los miembros: ", variable.GetUsuarios());
+  }
+  else {
+    console.log("No existe la ruta");
+  }
 }
 
 function ImprimirGrupos(coleccionGrupos: JsonColeccionGrupos) {
@@ -41,28 +71,22 @@ function ImprimirRetos (coleccionRetos: JsonColeccionRetos) : void {
   });
 }
 
-let coleccionUsuarios: JsonColeccionUsuarios;
-let coleccionGrupos: JsonColeccionGrupos;
-let coleccionRutas: JsonColeccionRutas;
-let coleccionRetos: JsonColeccionRetos;
-
-coleccionUsuarios = new JsonColeccionUsuarios();
-coleccionGrupos = new JsonColeccionGrupos();
-coleccionRutas = new JsonColeccionRutas();
-coleccionRetos = new JsonColeccionRetos();
-
 /**
  * comandosMenu
  */
 enum ComandosMenu {
   BorrarUsuario = 'Borrar usuario',
+  aniadirAmigo = 'Añadir un amigo',
+  eliminarAmigo = 'Eliminar un amigo',
   promptMostrarUsuarios = 'Mostrar usuarios',
   CrearRuta = 'Crear ruta',
   BorrarRuta = 'Borrar ruta',
   MostrarRutas = 'Mostrar rutas',
   CrearGrupo = 'Crear grupo',
   BorrarGrupo = 'Borrar grupo',
+  salirGrupo = 'Salir de un grupo',
   MostrarGrupos = 'Mostrar grupos',
+  UnirseAGrupo = 'Unirse a un grupo',
   CrearReto = 'Crear reto',
   BorrarReto = 'Borrar reto',
   MostrarRetos = 'Mostrar retos',
@@ -135,6 +159,15 @@ enum comandosOrdenarRetos {
   CantidadDeMiembrosAscendente = 'Cantidad de miembros ascendente',
   CantidadDeMiembrosDescendente = 'Cantidad de miembros descendente',
 }
+
+/**
+ * comandos seleccion mostrar info  de las rutas
+ */
+enum comandosSeleccionMostrarInfoRutas {
+  MostrarInfoRuta = 'Mostrar información de una ruta',
+  MostrarRutas = 'Mostrar listado de rutas',
+}
+
 /**
  * Pregunta al usuario qué comando desea ejecutar
  * y ejecuta el comando correspondiente.
@@ -231,6 +264,7 @@ function promptCrearUsuario() : void {
       main(nuevoUsuario.GetId());
     });
 }
+
 /**
  * Muestra los usuarios
  * @returns {void}
@@ -316,9 +350,9 @@ function BorrarUsuario(idUsuarioCreador:number): void {
 /**
  * añadir un amigo
  * @returns {void}
- * @param idUsuarioCreador
+ * @param idUsuario
  */
-function promptAniadirAmigo(idUsuarioCreador:number): void {
+function promptAniadirAmigo(idUsuario:number): void {
   console.clear();
   inquirer.prompt([
   {
@@ -327,7 +361,43 @@ function promptAniadirAmigo(idUsuarioCreador:number): void {
     message: 'Introduce el id del usuario que quieres añadir como amigo'
   },
   ]).then((respuestas) => {
-    
+    //comprueba si el id introducido ya es su amigo
+    if (coleccionUsuarios.getUsuario(idUsuario).GetAmigos().includes(parseInt(respuestas.id))) {
+      console.log('El usuario ya es tu amigo');
+    }
+    else{
+      if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== undefined) {
+        coleccionUsuarios.aniadirAmigo(idUsuario, parseInt(respuestas.id));
+        console.log('Amigo añadido exitosamente');
+      }
+      else {
+        console.log('El usuario no existe');
+      }
+    }
+  });
+}
+
+/**
+ * eliminar un amigo
+ * @returns {void}
+ * @param idUsuario
+ */
+function promptEliminarAmigo(idUsuario:number): void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id del usuario que quieres eliminar como amigo'
+  },
+  ]).then((respuestas) => {
+    if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== undefined) {
+      coleccionUsuarios.eliminarAmigo(idUsuario, parseInt(respuestas.id));
+      console.log('Amigo eliminado exitosamente');
+    }
+    else {
+      console.log('El usuario no existe');
+    }
   });
 }
 
@@ -654,19 +724,36 @@ function promptAnadirUsuarioAGrupo (idUsuario: number) : void {
     name: 'idGrupo',
     message: 'Introduce el id del grupo al que te quieres unir'
   },]).then((respuestas) => {
-    if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)) !== undefined) {
-      if (coleccionUsuarios.getUsuario(parseInt(respuestas.idUsuario)) !== undefined) {
-        if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)).GetMiembrosGrupo().includes(parseInt(respuestas.idUsuario))) {
-          console.log('El usuario ya está en el grupo');
-        }
-        else {
-          coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)).aniadirMiembro(parseInt(respuestas.idUsuario));
-          console.log('Usuario añadido al grupo');
-        }
+    if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)).GetMiembrosGrupo().includes(idUsuario)) {
+      console.log('El usuario ya esta en el grupo');
+    }
+    else {
+      if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)) !== undefined) {
+        coleccionGrupos.unirseGrupo(parseInt(respuestas.idGrupo), idUsuario);
+        console.log('Usuario añadido al grupo');
       }
       else {
-        console.log('El usuario no existe');
+        console.log('El grupo no existe');
       }
+    }
+  });
+}
+
+/**
+ * Elimina un usuario de un grupo
+ * @returns {void}
+ */
+function promptEliminarUsuarioDeGrupo (idUsuario: number) : void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'idGrupo',
+    message: 'Introduce el id del grupo del que quieres salir'
+  },]).then((respuestas) => {
+    if (coleccionGrupos.getGrupo(parseInt(respuestas.idGrupo)) !== undefined) {
+      coleccionGrupos.salirGrupo(parseInt(respuestas.idGrupo),idUsuario);
+      console.log('Se ha salido del grupo correctamente');
     }
     else {
       console.log('El grupo no existe');
@@ -794,7 +881,9 @@ function MostrarRetos() {
   });
 }
 
-
+/**
+ * Muestra el inicio de la aplicación
+ */
 function InicioMain() {
   console.clear();
   inquirer.prompt({
@@ -822,6 +911,35 @@ function InicioMain() {
 }
 
 /**
+ * submenu de rutas
+ * @returns {void}
+ */
+function submenu(): void{
+  console.clear();
+  inquirer.prompt({
+    type: 'list',
+    name: 'comando',
+    message: '¿Qué quieres ver?',
+    choices: Object.values(comandosSeleccionMostrarInfoRutas),
+  }).then((respuestas) => {
+    switch(respuestas['comando']) {
+      case comandosSeleccionMostrarInfoRutas.MostrarInfoRuta:
+        inquirer.prompt({
+          type: 'input',
+          name: 'id',
+          message: 'Introduce el id de la ruta',
+        }).then((respuestas) => {
+        ImprimirInfoRuta(parseInt(respuestas.id));
+      });
+        break;
+      case comandosSeleccionMostrarInfoRutas.MostrarRutas:
+        MostrarRutas();
+        break;
+      }
+    })
+}
+
+/**
  * Crea un usuario
  * @returns {void}
  */
@@ -839,6 +957,12 @@ function main(idUsuarioCreador: number): void {
       case ComandosMenu.promptMostrarUsuarios:
         promptMostrarUsuarios();
         break;
+      case ComandosMenu.aniadirAmigo:
+        promptAniadirAmigo(idUsuarioCreador);
+        break;
+      case ComandosMenu.eliminarAmigo:
+        promptEliminarAmigo(idUsuarioCreador);
+        break;
       case ComandosMenu.BorrarUsuario:
         BorrarUsuario(idUsuarioCreador);
         break;
@@ -846,13 +970,19 @@ function main(idUsuarioCreador: number): void {
         promptCrearRuta(idUsuarioCreador);
         break;
       case ComandosMenu.MostrarRutas:
-        MostrarRutas();
+        submenu();
         break;
       case ComandosMenu.BorrarRuta:
         promptBorrarRuta(idUsuarioCreador);
         break;
       case ComandosMenu.CrearGrupo:
         promptCrearGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.UnirseAGrupo:
+        promptAnadirUsuarioAGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.salirGrupo:
+        promptEliminarUsuarioDeGrupo(idUsuarioCreador);
         break;
       case ComandosMenu.MostrarGrupos:
         MostrarGrupos();

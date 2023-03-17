@@ -1,7 +1,7 @@
 import { Reto } from './reto';
 import { ColeccionRetos } from './coleccionRetos';
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import * as lowdb from "lowdb";
+import * as FileSync from "lowdb/adapters/FileSync";
 
 type schemaType = {
   challenge:{ id: number, nombre: string, rutasFormantes: string[], tipo: number,
@@ -49,7 +49,11 @@ export class JsonColeccionRetos extends ColeccionRetos {
    * @returns void
    */
   deleteReto(id: number): void {
-    super.deleteReto(id);
+    for (let i = 0; i < this.getRetos().length; i++) {
+      if (this.getRetos()[i].GetId() === id) {
+        this.getRetos().splice(i, 1);
+      }
+    }
     this.storeChallenges();
   }
 

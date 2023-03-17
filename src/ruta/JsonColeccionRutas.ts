@@ -1,7 +1,7 @@
 import { Ruta } from "./ruta";
 import { ColeccionRutas } from "./coleccionRutas";
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import * as lowdb from "lowdb";
+import * as FileSync from "lowdb/adapters/FileSync";
 
 
 // Tipo de datos como el de la clase ruta
@@ -51,7 +51,11 @@ export class JsonColeccionRutas extends ColeccionRutas {
    * @returns void
    */
   deleteRuta(indice: number): void {
-    super.deleteRuta(indice);
+    for(let i = 0; i < this.getRutas().length; i++) {
+      if(this.getRutas()[i].GetId() === indice) {
+        this.getRutas().splice(i, 1);
+      }
+    }
     this.storeRoutes();
   }
 

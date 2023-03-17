@@ -74,7 +74,8 @@ export class ColeccionGrupos implements metodos_grupos {
    * @returns Grupo | undefined
    */
   getGrupo(id: number): Grupo | undefined {
-    return ColeccionGrupos.grupos.find(grupo => grupo.GetId() === id);
+    const grupo = ColeccionGrupos.grupos.find(grupo => grupo.GetId() === id);
+    return grupo;
   }
 
   /**
@@ -166,6 +167,32 @@ export class ColeccionGrupos implements metodos_grupos {
       ColeccionGrupos.grupos.sort((a, b) => a.GetMiembrosGrupo().length - b.GetMiembrosGrupo().length);
     } else {
       ColeccionGrupos.grupos.sort((a, b) => b.GetMiembrosGrupo().length - a.GetMiembrosGrupo().length);
+    }
+  }
+
+  /**
+   * Método para unirse a un grupo
+   * @method unirseGrupo
+   * @param id
+   * @param idGrupo
+   */
+  unirseGrupo(idGrupo: number, id: number): void {
+    const grupo = ColeccionGrupos.grupos.find(grupo => grupo.GetId() === idGrupo);
+    if (grupo) {
+      grupo.unirseGrupo(id);
+    }
+  }
+
+  /**
+   * Metodo para salir de un grupo
+   * @method salirGrupo
+   * @param id
+   * @param idGrupo
+   */
+  salirGrupo(idGrupo: number, id: number): void {
+    const grupo = ColeccionGrupos.grupos.find(grupo => grupo.GetId() === idGrupo);
+    if (grupo) {
+      grupo.salirGrupo(id);
     }
   }
 }

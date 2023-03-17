@@ -85,4 +85,10 @@ export class Usuario{
   aniadirAmigo(id_amigo : number) {
     this.amigos.push(id_amigo);
   }
+  /**
+   * Funcion que elimina un amigo del usuario
+   */
+  eliminarAmigo(id_amigo : number) {
+    this.amigos.splice(this.amigos.indexOf(id_amigo), 1);
+  }
 }

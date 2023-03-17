@@ -162,4 +162,33 @@ export class ColeccionUsuarios implements metodos_usuarios {
       }
     }
   }
+
+  /**
+   * metodo para añadir amigos a un usuario
+   * @method aniadirAmigo
+   * @param id
+   * @param idAmigo
+   */
+  aniadirAmigo(id: number, idAmigo: number): void {
+    const usuario = ColeccionUsuarios.usuarios.find(usuario => usuario.GetId() === id);
+    const amigo = ColeccionUsuarios.usuarios.find(usuario => usuario.GetId() === idAmigo);
+    if (usuario && amigo) {
+      usuario.aniadirAmigo(amigo.GetId());
+    }
+  }
+
+  /**
+   * metodo para eliminar amigos de un usuario
+   * @method eliminarAmigo
+   * @param id
+   * @param idAmigo
+   */
+  eliminarAmigo(id: number, idAmigo: number): void {
+    const usuario = ColeccionUsuarios.usuarios.find(usuario => usuario.GetId() === id);
+    const amigo = ColeccionUsuarios.usuarios.find(usuario => usuario.GetId() === idAmigo);
+    if (usuario && amigo) {
+      usuario.eliminarAmigo(amigo.GetId());
+    }
+  }
 }
+

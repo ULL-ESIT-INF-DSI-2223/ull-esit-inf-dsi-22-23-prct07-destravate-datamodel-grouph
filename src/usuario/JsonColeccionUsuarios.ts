@@ -1,7 +1,7 @@
 import { Usuario, tipo_historico } from "./usuario";
 import { ColeccionUsuarios } from "./coleccionUsuarios";
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import * as lowdb from "lowdb";
+import * as FileSync from "lowdb/adapters/FileSync";
 
 
 // Tipo de datos como el de la clase usuario
@@ -46,15 +46,40 @@ export class JsonColeccionUsuarios extends ColeccionUsuarios {
   }
 
   /**
-   * elimina un usuario del array de usuarios y lo guarda en el fichero JSON
-   * @param indice
+   * elimina un usuario con id indicado del array de usuarios y lo guarda en el fichero JSON
+   * @param idUsuario
    * @returns void
    */
-  deleteUsuario(indice: number): void {
-    super.deleteUsuario(indice);
+  deleteUsuario(idUsuario: number): void {
+    for (let i = 0; i < this.getUsuarios().length; i++) {
+      if (this.getUsuarios()[i].GetId() === idUsuario) {
+        this.getUsuarios().splice(i, 1);
+      }
+    }
     this.storeUsers();
   }
 
+  /**
+   * añade un amigo a un usuario y lo guarda en el fichero JSON
+   * @param id
+   * @param idAmigo
+   * @returns void
+   */
+  aniadirAmigo(id: number, idAmigo: number): void {
+    super.aniadirAmigo(id, idAmigo);
+    this.storeUsers();
+  }
+
+  /**
+   * elimina un amigo de un usuario y lo guarda en el fichero JSON
+   * @param id
+   * @param idAmigo
+   * @returns void
+   */
+  eliminarAmigo(id: number, idAmigo: number): void {
+    super.eliminarAmigo(id, idAmigo);
+    this.storeUsers();
+  }
 
   /**
    * guarda los usuarios en el fichero JSON

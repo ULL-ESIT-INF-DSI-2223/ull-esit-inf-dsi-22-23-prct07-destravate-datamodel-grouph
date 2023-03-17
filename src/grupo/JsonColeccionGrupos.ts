@@ -2,8 +2,8 @@ import { Grupo, tipo_historico} from './grupo';
 import { ColeccionGrupos} from './coleccionGrupos';
 import { Usuario } from '../usuario/usuario';
 import { ColeccionUsuarios } from '../usuario/coleccionUsuarios';
-import lowdb from "lowdb";
-import FileSync from "lowdb/adapters/FileSync";
+import * as lowdb from "lowdb";
+import * as FileSync from "lowdb/adapters/FileSync";
 
 
 type schemaType = {
@@ -52,9 +52,34 @@ export class JsonColeccionGrupos extends ColeccionGrupos {
    * @returns void
    */
   deleteGrupo(id: number): void {
-    super.deleteGrupo(id);
+    for (let i = 0; i < this.getGrupos().length; i++) {
+      if (this.getGrupos()[i].GetId() === id) {
+        this.getGrupos().splice(i, 1);
+      }
+    }
     this.storeGroups();
   }
+
+  /**
+   * añade un usuario al grupo y lo guarda en el fichero JSON
+   * @param idGrupo
+   * @param idUsuario
+   */
+  unirseGrupo(idGrupo: number, idUsuario: number): void {
+    super.unirseGrupo(idGrupo, idUsuario);
+    this.storeGroups();
+  }
+
+  /**
+   * elimina un usuario del grupo y lo guarda en el fichero JSON
+   * @param idGrupo
+   * @param idUsuario
+   */
+  salirGrupo(idGrupo: number, idUsuario: number): void {
+    super.salirGrupo(idGrupo, idUsuario);
+    this.storeGroups();
+  }
+
 
   /**
    * guarda los grupos en el fichero JSON

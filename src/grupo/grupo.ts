@@ -86,7 +86,19 @@ export class Grupo{
    * añadirMiembro
    * @param id Identificador del usuario que se añade al grupo
    */
-  aniadirMiembro(id: number) {
+  unirseGrupo(id : number) {
     this.miembrosGrupo.push(id);
+  }
+
+  /**
+   * eliminarMiembro
+   * @param id Identificador del usuario que se elimina del grupo
+   */
+  salirGrupo(id: number) {
+    for (let i = 0; i < this.miembrosGrupo.length; i++) {
+      if (this.miembrosGrupo[i] === id) {
+        this.miembrosGrupo.splice(i, 1);
+      }
+    }
   }
 }
