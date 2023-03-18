@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { ColeccionGrupos } from '../../src/grupo/coleccionGrupos';
 import { Grupo } from '../../src/grupo/grupo';
 
+
 describe('ColeccionGrupos', () => {
   let coleccionGrupos: ColeccionGrupos;
   let grupo: Grupo;
@@ -61,6 +62,16 @@ describe('ColeccionGrupos', () => {
     expect(coleccionGrupos.getGrupos()).to.eql([grupo1, grupo2]);
     coleccionGrupos.ordenarGruposPorCantidadDeIntegrantes(false);
     expect(coleccionGrupos.getGrupos()).to.eql([grupo2, grupo1]);
+  });
+  it ('Se comprueban los métodos unirseGrupo y salirGrupo', () => {
+    coleccionGrupos.unirseGrupo(1, 4);
+    expect(coleccionGrupos.getGrupo(1)?.GetMiembrosGrupo()).to.eql([1,2,3,4]);
+    coleccionGrupos.salirGrupo(1, 4);
+    expect(coleccionGrupos.getGrupo(1)?.GetMiembrosGrupo()).to.eql([1,2,3]);
+    coleccionGrupos.unirseGrupo(3, 1);
+    expect(coleccionGrupos.getGrupo(3)).to.equal(undefined);
+    coleccionGrupos.salirGrupo(3, 1);
+    expect(coleccionGrupos.getGrupo(3)).to.equal(undefined);
   });
 });
 
