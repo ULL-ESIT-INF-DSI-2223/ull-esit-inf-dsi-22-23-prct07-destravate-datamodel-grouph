@@ -65,10 +65,24 @@ describe('ColeccionUsuarios', () => {
     coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(false,2);
     expect(coleccionUsuarios.getUsuarios()).to.eql([usuario1, usuario2, usuario3]);
   });
+<<<<<<< HEAD
   it('Un usuario añade a su lista de amigos a otro usuario', () => {
     coleccionUsuarios.addUsuario(usuario1);
     coleccionUsuarios.aniadirAmigo(1,5);
     expect(coleccionUsuarios.getUsuario(1)?.GetAmigos()).to.eql([2,3,5]);
+=======
+  it('Se comprueban los métodos aniadirAmigo y eliminarAmigo', () => {
+    coleccionUsuarios.aniadirAmigo(1,2);
+    expect(coleccionUsuarios.getUsuario(1)?.GetAmigos()).to.eql([2,3,2]);
+    coleccionUsuarios.aniadirAmigo(1,3);
+    expect(coleccionUsuarios.getUsuario(1)?.GetAmigos()).to.eql([2,3,2,3]);
+    coleccionUsuarios.eliminarAmigo(1,2);
+    expect(coleccionUsuarios.getUsuario(1)?.GetAmigos()).to.eql([3,2,3]);
+    coleccionUsuarios.aniadirAmigo(4,5);
+    expect(coleccionUsuarios.getUsuario(4)).to.equal(undefined);
+    coleccionUsuarios.eliminarAmigo(4,5);
+    expect(coleccionUsuarios.getUsuario(4)).to.equal(undefined);
+>>>>>>> bad5c4c775b7bdee64d185efd4ec910b137e08b7
   });
 });
 
