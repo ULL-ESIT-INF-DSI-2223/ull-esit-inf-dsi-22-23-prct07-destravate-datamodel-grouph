@@ -19,14 +19,6 @@ describe('Se comprueba la clase usuario', () => {
     expect(usuario.GetRetos()).to.be.eql([1234, 1235]);
     expect(usuario.GetHistoricos()).to.be.eql([["25-12-2021", 1234], ["03-11-2022"]]);
   });
-<<<<<<< HEAD
-  it('Se comprueba el método añadir amigo', () => {
-    const usuario = new Usuario('Jorge', 1234, 0, [1234, 1235], [[1234, 1235], [1234, 1235]], [[1234, 1235], [1234, 1235]], [1234, 1235], [1234, 1235], [["25-12-2021", 1234], ["03-11-2022"]]);
-    usuario.aniadirAmigo(1236);
-    expect(usuario.GetAmigos()).to.be.eql([1234, 1235, 1236]);
-  });
-});
-=======
   it('Se comprueban los métodos aniadirAmigo y eliminarAmigo', () => {
     const usuario = new Usuario('Jorge', 1234, 0, [1234, 1235], [[1234, 1235], [1234, 1235]], [[1234, 1235], [1234, 1235]], [1234, 1235], [1234, 1235], [["25-12-2021", 1234], ["03-11-2022"]]);
     usuario.aniadirAmigo(1236);
@@ -35,4 +27,5 @@ describe('Se comprueba la clase usuario', () => {
     expect(usuario.GetAmigos()).to.be.eql([1234, 1236]);
     });
   });
->>>>>>> bad5c4c775b7bdee64d185efd4ec910b137e08b7
+
+
