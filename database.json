@@ -1,62 +1,6 @@
 {
   "user": [
     {
-      "nombre": "Usuario1",
-      "id": 1,
-      "actividades": 0,
-      "amigos": [
-        2,
-        3,
-        4,
-        5
-      ],
-      "grupos_amigos": [
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          3
-        ]
-      ],
-      "estadisticas": [
-        [
-          1,
-          1,
-          1
-        ],
-        [
-          1,
-          1,
-          1
-        ],
-        [
-          1,
-          1,
-          1
-        ]
-      ],
-      "rutas_favoritas": [
-        1,
-        2
-      ],
-      "retos": [
-        1,
-        2
-      ],
-      "historicos": [
-        [
-          "ruta1",
-          1
-        ],
-        [
-          "ruta2",
-          2
-        ]
-      ]
-    },
-    {
       "nombre": "Usuario2",
       "id": 2,
       "actividades": 2,
@@ -1187,6 +1131,53 @@
           2
         ]
       ]
+    },
+    {
+      "nombre": "Usuario1",
+      "id": 1,
+      "actividades": 0,
+      "amigos": [
+        1,
+        2
+      ],
+      "grupos_amigos": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "estadisticas": [
+        [
+          50,
+          35
+        ],
+        [
+          34,
+          35
+        ]
+      ],
+      "rutas_favoritas": [
+        34,
+        35
+      ],
+      "retos": [
+        34,
+        35
+      ],
+      "historicos": [
+        [
+          "25-12-2021",
+          1234
+        ],
+        [
+          "03-11-2022",
+          550
+        ]
+      ]
     }
   ],
   "group": [
@@ -1436,50 +1427,6 @@
   ],
   "route": [
     {
-      "id": 1,
-      "nombre": "ruta1",
-      "geo_ini": [
-        1,
-        1
-      ],
-      "geo_fin": [
-        2,
-        2
-      ],
-      "longitud": 20,
-      "desnivel": 1,
-      "usuarios": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "actividad": 4,
-      "calificacion": 5,
-      "idCreador": 1
-    },
-    {
-      "id": 2,
-      "nombre": "ruta2",
-      "geo_ini": [
-        3,
-        3
-      ],
-      "geo_fin": [
-        4,
-        4
-      ],
-      "longitud": 30,
-      "desnivel": 1,
-      "usuarios": [
-        1,
-        2
-      ],
-      "actividad": 5,
-      "calificacion": 6,
-      "idCreador": 2
-    },
-    {
       "id": 3,
       "nombre": "ruta3",
       "geo_ini": [
@@ -1673,23 +1620,6 @@
         3
       ],
       "idCreador": 1
-    },
-    {
-      "id": 2,
-      "nombre": "reto2",
-      "rutasFormantes": [
-        "ruta6",
-        "ruta13"
-      ],
-      "tipo": 1,
-      "kmTotales": 2000,
-      "UsuariosActivos": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "idCreador": 6
     },
     {
       "id": 3,

@@ -1377,13 +1377,325 @@ export class JsonColeccionGrupos extends ColeccionGrupos {
 Esta clase se encarga de que cada vez que se añade un grupo, se elimina un grupo, se guarda en el fichero JSON.
 Además de esto, también se encarga de que cuando se crea la clase, se lea el fichero JSON y se añadan los grupos que hay en el fichero JSON al array de grupos.
 
+## Fichero principal (index.ts)
+
+Este es el fichero principal de la aplicación. El usuario a la hora de ejecutar la aplicación interactuara con este fichero constantemente.
+
+Para el correcto funcionamiento de este fichero, tras las importaciones. Lo primero que se ve son distintas funciones para mostrar por pantalla los usuarios, rutas,retos o grupos. Un ejmplo de estas funciones es la siguiente:
+
+```ts
+
+function ImprimirGrupos(coleccionGrupos: JsonColeccionGrupos) {
+  let variable = coleccionGrupos.getGrupos();
+  variable.forEach((grupo) => {
+    console.log(grupo.GetNombre(), grupo.GetId());
+  });
+}
+  
+  ```
+
+  Tras esto, en el codigo creamos los comandos para los distintos menus que vamos a usar. Nosotros usamos 7 distintos tanto para el menu principal como para los submenus. Un ejemplo de estos comandos es el siguiente:
+
+  ```ts
+  enum comandosOrdenarRetos {
+  OrdenAlfabeticoAscendente = 'Orden alfabético ascendente',
+  OrdenAlfabeticoDescendente = 'Orden alfabético descendente',
+  PorCantidadDeKmAscendente = 'Por cantidad de km ascendente',
+  PorCantidadDeKmDescendente = 'Por cantidad de km descendente',
+  CantidadDeMiembrosAscendente = 'Cantidad de miembros ascendente',
+  CantidadDeMiembrosDescendente = 'Cantidad de miembros descendente',
+}
+
+```
+
+estos comandos son los que se muestran por pantalla y el usuario los selecciona para realizar una accion.
+
+Tras esto, se empiezan a crear funciones para crear los, mostrar o borrar los disntintos elementos de la aplicación. Al ser todo similares pero simplemente variando los campos a rellenar, solo mostraremos un ejemplo de estas funciones. Un ejemplo de estas funciones es la siguiente:
+
+```ts
+function promptCrearRuta(idUsuarioCreador:number) : void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'nombre',
+    message: 'Introduce el nombre de la ruta'
+  },
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id de la ruta'
+  },
+  {
+    type: 'input',
+    name: 'punto_inicio',
+    message: 'Introduce el punto de inicio de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
+  },
+  {
+    type: 'input',
+    name: 'punto_fin',
+    message: 'Introduce el punto de fin de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
+  },
+  {
+    type: 'input',
+    name: 'distancia',
+    message: 'Introduce la distancia de la ruta'
+  },
+  {
+    type: 'input',
+    name: 'desnivel',
+    message: 'Introduce el desnivel de la ruta'
+  },
+  {
+    type: 'input',
+    name: 'usuarios',
+    message: 'Introduce los usuarios de la ruta',
+    filter: function(input) {
+      // Convertir la entrada en un array de enteros
+      return input.split(',').map(numero => parseInt(numero));
+    },
+  },
+  {
+    type: 'input',
+    name: 'actividad',
+    message: 'Introduce la actividad de la ruta'
+  },
+  {
+    type: 'input',
+    name: 'calificacion',
+    message: 'Introduce la calificacion de la ruta'
+  }]).then((respuestas) => {
+    const nuevaRuta = new Ruta(parseInt(respuestas.id), respuestas.nombre, respuestas.punto_inicio, respuestas.punto_fin,
+      parseInt(respuestas.distancia), parseInt(respuestas.desnivel), respuestas.usuarios, parseInt(respuestas.actividad), parseInt(respuestas.calificacion), idUsuarioCreador);
+    coleccionRutas.addRuta(nuevaRuta);
+    console.log('Ruta creada exitosamente.');
+  });
+}
+```
+
+Como se puede ver, en el codigo anterior, se crea una nueva ruta con los datos que el usuario ha introducido por pantalla. Tras esto, se añade la ruta al array de rutas y se guarda en el fichero JSON.
+
+El codigo de borrar seria similar, solo que en vez de añadir la ruta al array de rutas, se elimina de este.
+
+```ts
+function promptBorrarRuta(idUsuarioCreador: number) : void {
+  console.clear();
+  inquirer.prompt({
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id de la ruta que quieres borrar'
+  }).then((respuestas) => {
+    if (coleccionRutas.getRuta(parseInt(respuestas.id)) !== undefined) {
+      if (idUsuarioCreador === coleccionRutas.getRuta(parseInt(respuestas.id)).GetIdCreador()) {
+        coleccionRutas.deleteRuta(parseInt(respuestas.id));
+        console.log('Ruta borrada exitosamente');
+      }
+      else {
+        console.log('No puedes borrar una ruta que no has creado');
+      }
+    }
+    else {
+      console.log('La ruta no existe');
+    }
+  });
+}
+```
+
+Añadir que aqui se comprueba si el usuario puede borrar o no los contenidos en funcion de si es el creador o no.
+
+El siguiente ejemplo ya usa los comandos con los que el usuario interactua:
+
+```ts
+function MostrarRutas() {
+  console.clear();
+  inquirer.prompt({
+    type: 'list',
+    name: 'id',
+    message: '¿Cómo quiere ordenar las rutas?',
+    choices: Object.values(comandosOrdenarRutas)
+  }).then((respuestas) => {
+    switch(respuestas['id']) {
+      case comandosOrdenarRutas.OrdenAlfabeticoAscendente:
+        coleccionRutas.ordenarRutasPorNombreAlfabetico(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.OrdenAlfabeticoDescendente:
+        coleccionRutas.ordenarRutasPorNombreAlfabetico(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CantidadDeUsuariosAscendente:
+        coleccionRutas.ordenarRutasPorCantidadUsuarios(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CantidadDeUsuariosDescendente:
+        coleccionRutas.ordenarRutasPorCantidadUsuarios(false);
+        ImprimirRutas(coleccionRutas);
+      break;
+      case comandosOrdenarRutas.LongitudDeRutasAscendente:
+        coleccionRutas.ordenarRutasPorDistancia(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.LongitudDeRutasDescendente:
+        coleccionRutas.ordenarRutasPorDistancia(false);
+        break;
+      case comandosOrdenarRutas.CalificacionMediaAscendente:
+        coleccionRutas.ordenarRutasPorCalificacionMedia(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.CalificacionMediaDescendente:
+        coleccionRutas.ordenarRutasPorCalificacionMedia(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.ActividadAscendente:
+        coleccionRutas.ordenarRutasPorActividad(true);
+        ImprimirRutas(coleccionRutas);
+        break;
+      case comandosOrdenarRutas.ActividadDescendente:
+        coleccionRutas.ordenarRutasPorActividad(false);
+        ImprimirRutas(coleccionRutas);
+        break;
+    }
+  });
+}
+```
+
+Como se puede ver, se crea un menu con los diferentes comandos de ordenacion y se ordenan las rutas en funcion de la opcion que el usuario haya elegido. Tras esto, se imprimen las rutas ordenadas.
+
+Estas 3 funciones son similares pero variando los distintos campos y metodos de ordenacion.
+
+Otras funciones similares que estan en algunas clases son las de añadir o elimiar, tanto amigos a un usuarios, como usuarios a un grupo. A la hora de añadir, un ejemplo es:
+  
+  ```ts
+  function promptAniadirAmigo(idUsuario:number): void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id del usuario que quieres añadir como amigo'
+  },
+  ]).then((respuestas) => {
+    //comprueba si el id introducido ya es su amigo
+    if (coleccionUsuarios.getUsuario(idUsuario).GetAmigos().includes(parseInt(respuestas.id))) {
+      console.log('El usuario ya es tu amigo');
+    }
+    else{
+      if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== undefined) {
+        coleccionUsuarios.aniadirAmigo(idUsuario, parseInt(respuestas.id));
+        console.log('Amigo añadido exitosamente');
+      }
+      else {
+        console.log('El usuario no existe');
+      }
+    }
+  });
+}
+```
+
+como se puede ver, se comprueba si el usuario existe y si ya es amigo del usuario que esta logueado. Tras esto, se añade el amigo al array de amigos del usuario.
+
+Y para borrar el usuario, se hace lo siguiente:
+
+```ts
+
+function promptEliminarAmigo(idUsuario:number): void {
+  console.clear();
+  inquirer.prompt([
+  {
+    type: 'input',
+    name: 'id',
+    message: 'Introduce el id del usuario que quieres eliminar como amigo'
+  },
+  ]).then((respuestas) => {
+    if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== undefined) {
+      coleccionUsuarios.eliminarAmigo(idUsuario, parseInt(respuestas.id));
+      console.log('Amigo eliminado exitosamente');
+    }
+    else {
+      console.log('El usuario no existe');
+    }
+  });
+}
+```
+
+Como se puede ver, se comprueba si el usuario existe y si es amigo del usuario que esta logueado. Tras esto, se elimina el amigo del array de amigos del usuario.
+
+Por último, estan las funciones de los menus, en los que se usan los comandos mencionados anteriormente y donde se selecciona la opcion que se quiere ejecutar por el usuario. Un ejemplo de estos es:
+
+```ts
+function main(idUsuarioCreador: number): void {
+  console.clear();
+  inquirer.prompt({
+    type: 'list',
+    name: 'comando',
+    message: '¿Qué quieres hacer?',
+    choices: Object.values(ComandosMenu),
+  }).then((respuestas) => {
+    switch(respuestas['comando']) {
+      case ComandosMenu.Salir:
+        break;
+      case ComandosMenu.promptMostrarUsuarios:
+        promptMostrarUsuarios();
+        break;
+      case ComandosMenu.aniadirAmigo:
+        promptAniadirAmigo(idUsuarioCreador);
+        break;
+      case ComandosMenu.eliminarAmigo:
+        promptEliminarAmigo(idUsuarioCreador);
+        break;
+      case ComandosMenu.BorrarUsuario:
+        BorrarUsuario(idUsuarioCreador);
+        break;
+      case ComandosMenu.CrearRuta:
+        promptCrearRuta(idUsuarioCreador);
+        break;
+      case ComandosMenu.MostrarRutas:
+        submenu();
+        break;
+      case ComandosMenu.BorrarRuta:
+        promptBorrarRuta(idUsuarioCreador);
+        break;
+      case ComandosMenu.CrearGrupo:
+        promptCrearGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.UnirseAGrupo:
+        promptAnadirUsuarioAGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.salirGrupo:
+        promptEliminarUsuarioDeGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.MostrarGrupos:
+        MostrarGrupos();
+        break;
+      case ComandosMenu.BorrarGrupo:
+        promptBorrarGrupo(idUsuarioCreador);
+        break;
+      case ComandosMenu.CrearReto:
+        promptCrearReto(idUsuarioCreador);
+        break;
+      case ComandosMenu.MostrarRetos:
+        MostrarRetos();
+        break;
+      case ComandosMenu.BorrarReto:
+        promptBorrarReto(idUsuarioCreador);
+        break;
+    }
+  })
+}
+```
+
+Como se puede apreciar, se crea un menu con las distintas opciones que tiene el usuario y se ejecuta la funcion correspondiente a la opcion que el usuario haya elegido.
 
 
+## Conclusiones
 
-
-
-
-
->>>>>>> bad5c4c775b7bdee64d185efd4ec910b137e08b7
-
-
+En esta práctica hemos podido poner a prueba todos nuestros conocimientos sobre todos los conceptos de la asignatura y dandonos cuenta de verdad todo lo que podemos llegar a hacer con los conocimientos actuales. También, el uso de las interfaces nos ha permitido crear una aplicación que se adapta a las necesidades de los usuarios y que es fácil de modificar y ampliar.
+Por último, el aprender a utilizar una base de datos nos ha permitido crear una aplicación que es mucho más robusta y que puede ser utilizada por muchos usuarios a la vez y nos ha servido para aprender a utilizar una base de datos para futuros trabajos. 

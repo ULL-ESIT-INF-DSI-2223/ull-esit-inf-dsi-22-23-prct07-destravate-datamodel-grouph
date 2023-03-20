@@ -23,6 +23,7 @@ coleccionGrupos = new JsonColeccionGrupos();
 coleccionRutas = new JsonColeccionRutas();
 coleccionRetos = new JsonColeccionRetos();
 
+
 function ImprimirUsuario(entrada: JsonColeccionUsuarios): void {
   let variable = entrada.getUsuarios();
   variable.forEach((usuario) => {
