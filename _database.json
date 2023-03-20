@@ -180,7 +180,12 @@
         [
           1,
           3
-        ]
+        ]== undefined) {
+          console.log('El usuario no existe');
+          return;
+        }
+        let usuario = coleccionUsuarios.getUsuario(idUsuarioCreador);
+        usuario.aniadirAmigo(parseInt(respuestas.id));
       ],
       "estadisticas": [
         [

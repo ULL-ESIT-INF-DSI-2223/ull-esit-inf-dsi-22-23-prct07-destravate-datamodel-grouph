@@ -18,5 +18,10 @@ describe('Se comprueba la clase grupo grupo', () => {
     expect(grupo.GetHistoricos()).to.be.eql([["25-12-2021", 1234], ["03-11-2022"]]);
     expect(grupo.GetIdCreador()).to.be.equal(1);
   });
+  it('Se comprueba el método aniadirUsuario', () => {
+    const grupo = new Grupo(1234, 'Grupo1', [1234, 1235], [[1234, 1235], [1234, 1235]], [1234, 1235], [1234, 1235], [["25-12-2021", 1234], ["03-11-2022"]],1);
+    grupo.aniadirMiembro(1236);
+    expect(grupo.GetMiembrosGrupo()).to.be.eql([1234, 1235, 1236]);
+  });
 });
 

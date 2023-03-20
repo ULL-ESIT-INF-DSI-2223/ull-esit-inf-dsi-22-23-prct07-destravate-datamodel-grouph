@@ -65,6 +65,11 @@ describe('ColeccionUsuarios', () => {
     coleccionUsuarios.ordenarUsuariosPorDistanciaRecorrida(false,2);
     expect(coleccionUsuarios.getUsuarios()).to.eql([usuario1, usuario2, usuario3]);
   });
+  it('Un usuario añade a su lista de amigos a otro usuario', () => {
+    coleccionUsuarios.addUsuario(usuario1);
+    coleccionUsuarios.aniadirAmigo(1,5);
+    expect(coleccionUsuarios.getUsuario(1)?.GetAmigos()).to.eql([2,3,5]);
+  });
 });
 
 
