@@ -6,7 +6,7 @@
  * @property {Function} ordenarRetosPorCantidadDeUsuarios - Ordena los retos por tiempo
 */
 export interface metodos_retos {
-  ordenarRetosPorNombreAlfabetico(ascendente: boolean): void;
-  ordenarRetosPorDistanciaRecorrida(ascendente: boolean, periodo: number): void;
-  ordenarRetosPorCantidadDeUsuarios(ascendente: boolean): void;
-}
+    ordenarRetosPorNombreAlfabetico(ascendente: boolean): void;
+    ordenarRetosPorDistanciaRecorrida(ascendente: boolean, periodo: number): void;
+    ordenarRetosPorCantidadDeUsuarios(ascendente: boolean): void;
+  }
