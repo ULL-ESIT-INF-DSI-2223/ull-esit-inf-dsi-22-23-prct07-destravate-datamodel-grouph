@@ -1004,6 +1004,36 @@
           550
         ]
       ]
+    },
+    {
+      "nombre": "usuario3",
+      "id": 6,
+      "actividades": 1,
+      "amigos": [
+        1
+      ],
+      "grupos_amigos": [
+        [
+          1
+        ]
+      ],
+      "estadisticas": [
+        [
+          1
+        ]
+      ],
+      "rutas_favoritas": [
+        1
+      ],
+      "retos": [
+        1
+      ],
+      "historicos": [
+        [
+          "1",
+          null
+        ]
+      ]
     }
   ],
   "group": [

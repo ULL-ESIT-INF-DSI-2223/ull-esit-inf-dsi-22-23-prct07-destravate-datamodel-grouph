@@ -262,6 +262,11 @@ function promptCrearUsuario() : void {
       },
     },
     ]).then((respuestas) => {
+      //funcion que revisa si ya existe un usuario con ese id
+      if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== null) {
+        console.log('Ya existe un usuario con ese id');
+        return;
+      }
       const nuevoUsuario = new Usuario(respuestas.nombre, parseInt(respuestas.id), parseInt(respuestas.actividades), respuestas.amigos,
       respuestas.grupos_amigos, respuestas.estadisticas, respuestas.rutas_favoritas, respuestas.retos, respuestas.historicos);
       coleccionUsuarios.addUsuario(nuevoUsuario);
