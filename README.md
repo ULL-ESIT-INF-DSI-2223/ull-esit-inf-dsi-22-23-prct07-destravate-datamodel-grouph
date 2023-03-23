@@ -4,8 +4,11 @@
 
 [![Coveralls](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/coveralls.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/coveralls.yml)
 
+Importante, para ejecutar la práctica, hacerlo con npm run dev.
+
+
 En esta práctica se nos pide crear todo un modelo de un sistema de información de registros de actividades deportivas.
-Para ello se nos pide crear estructuras de datos que modelen una ruta, un usuario, un reto y un grupo. 
+Para ello se nos pide crear estructuras de datos que modelen una ruta, un usuario, un reto y un grupo.
 
 ## Implemencación de las clases correspondientes a Usuario, Grupo, Ruta y Reto
 
@@ -860,7 +863,7 @@ export class ColeccionRetos implements metodos_retos {
 }
 ```
 
-Esta clase implementa la interfaz metodos_retos, que contiene los métodos que se implementarán en la clase colección de retos. 
+Esta clase implementa la interfaz metodos_retos, que contiene los métodos que se implementarán en la clase colección de retos.
 Esta clase es una clase singleton, por lo que solo se puede instanciar una vez. Además contiene un array de retos, que es el array que contiene todos los retos que se han creado. Esta clase contiene los métodos necesarios para añadir, eliminar, obtener y ordenar los retos.
 En la implementación tiene un constructor, que es privado, para que no se pueda instanciar la clase desde fuera de la misma. Además, tiene un método estático que devuelve una instancia de la clase, que es el método que se utiliza para instanciar la clase. Este método comprueba si ya se ha instanciado la clase, y si no es así, la instancia. Si ya se ha instanciado, devuelve la instancia que ya se había creado. Métodos para obtener un reto en función de su id, nombre o indice, para obtener el número de retos, para añadir un reto, para eliminar un reto, para ordenar los retos por nombre, distancia recorrida o cantidad de usuarios, y para obtener un reto en función de su id, nombre o indice.
 De esta forma se puede ordenar la lista de retos de forma ascendente o descendente, y se puede obtener un reto en función de su id, nombre o indice.
@@ -868,7 +871,7 @@ De esta forma se puede ordenar la lista de retos de forma ascendente o descenden
 ### Clase colección de grupos
 
 La clase colección de grupos implementa la siguiente interfaz:
-  
+
 ```ts
 export interface metodos_grupos {
   ordenarGruposPorNombreAlfabetico: (ascendente: boolean) => void;
@@ -879,7 +882,7 @@ export interface metodos_grupos {
 
 Esta interfaz contiene los métodos que se implementarán en la clase colección de grupos.
 La implementación de la clase colección de grupos es la siguiente:
-  
+
 ```ts
 export class ColeccionGrupos implements metodos_grupos {
   private static grupos: Grupo[] = [];
@@ -1390,7 +1393,7 @@ function ImprimirGrupos(coleccionGrupos: JsonColeccionGrupos) {
     console.log(grupo.GetNombre(), grupo.GetId());
   });
 }
-  
+
   ```
 
   Tras esto, en el codigo creamos los comandos para los distintos menus que vamos a usar. Nosotros usamos 7 distintos tanto para el menu principal como para los submenus. Un ejemplo de estos comandos es el siguiente:
@@ -1571,7 +1574,7 @@ Como se puede ver, se crea un menu con los diferentes comandos de ordenacion y s
 Estas 3 funciones son similares pero variando los distintos campos y metodos de ordenacion.
 
 Otras funciones similares que estan en algunas clases son las de añadir o elimiar, tanto amigos a un usuarios, como usuarios a un grupo. A la hora de añadir, un ejemplo es:
-  
+
   ```ts
   function promptAniadirAmigo(idUsuario:number): void {
   console.clear();
@@ -1697,4 +1700,4 @@ Como se puede apreciar, se crea un menu con las distintas opciones que tiene el 
 ## Conclusiones
 
 En esta práctica hemos podido poner a prueba todos nuestros conocimientos sobre todos los conceptos de la asignatura y dandonos cuenta de verdad todo lo que podemos llegar a hacer con los conocimientos actuales. También, el uso de las interfaces nos ha permitido crear una aplicación que se adapta a las necesidades de los usuarios y que es fácil de modificar y ampliar.
-Por último, el aprender a utilizar una base de datos nos ha permitido crear una aplicación que es mucho más robusta y que puede ser utilizada por muchos usuarios a la vez y nos ha servido para aprender a utilizar una base de datos para futuros trabajos. 
+Por último, el aprender a utilizar una base de datos nos ha permitido crear una aplicación que es mucho más robusta y que puede ser utilizada por muchos usuarios a la vez y nos ha servido para aprender a utilizar una base de datos para futuros trabajos.
