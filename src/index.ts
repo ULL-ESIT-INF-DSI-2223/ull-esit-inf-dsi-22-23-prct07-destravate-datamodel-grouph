@@ -10,7 +10,7 @@ import { JsonColeccionUsuarios } from './usuario/JsonColeccionUsuarios';
 import { JsonColeccionGrupos } from './grupo/JsonColeccionGrupos';
 import { JsonColeccionRutas } from './ruta/JsonColeccionRutas';
 import { JsonColeccionRetos } from './reto/JsonColeccionRetos';
-
+import readline from 'readline';
 const inquirer = require('inquirer');
 
 let coleccionUsuarios: JsonColeccionUsuarios;
@@ -167,6 +167,11 @@ enum comandosOrdenarRetos {
 enum comandosSeleccionMostrarInfoRutas {
   MostrarInfoRuta = 'Mostrar información de una ruta',
   MostrarRutas = 'Mostrar listado de rutas',
+}
+
+enum comandosVolverMenu {
+  VolverMenu = 'Volver al menú principal',
+  Salir = 'Salir'
 }
 
 /**
@@ -940,6 +945,8 @@ function submenu(): void{
     })
 }
 
+
+
 /**
  * Crea un usuario
  * @returns {void}
@@ -1001,7 +1008,8 @@ function main(idUsuarioCreador: number): void {
         promptBorrarReto(idUsuarioCreador);
         break;
     }
-  })
+  });
+  //funcion que se queda esperando a que el usuario pulse una tecla para volver al menu principal
 }
 
 InicioMain();
