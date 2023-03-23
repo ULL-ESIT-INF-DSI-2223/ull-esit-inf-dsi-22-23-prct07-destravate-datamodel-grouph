@@ -27,3 +27,5 @@ describe('Se comprueba la clase usuario', () => {
     expect(usuario.GetAmigos()).to.be.eql([1234, 1236]);
     });
   });
+
+

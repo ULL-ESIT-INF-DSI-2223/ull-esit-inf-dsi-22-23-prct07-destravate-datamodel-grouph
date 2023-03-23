@@ -1,7 +1,7 @@
 import { Usuario, tipo_historico } from "./usuario";
 import { ColeccionUsuarios } from "./coleccionUsuarios";
-import * as lowdb from "lowdb";
-import * as FileSync from "lowdb/adapters/FileSync";
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
 
 
 // Tipo de datos como el de la clase usuario

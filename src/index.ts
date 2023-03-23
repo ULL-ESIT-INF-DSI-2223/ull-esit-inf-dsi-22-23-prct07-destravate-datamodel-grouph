@@ -10,7 +10,7 @@ import { JsonColeccionUsuarios } from './usuario/JsonColeccionUsuarios';
 import { JsonColeccionGrupos } from './grupo/JsonColeccionGrupos';
 import { JsonColeccionRutas } from './ruta/JsonColeccionRutas';
 import { JsonColeccionRetos } from './reto/JsonColeccionRetos';
-
+import readline from 'readline';
 const inquirer = require('inquirer');
 
 let coleccionUsuarios: JsonColeccionUsuarios;
@@ -22,6 +22,7 @@ coleccionUsuarios = new JsonColeccionUsuarios();
 coleccionGrupos = new JsonColeccionGrupos();
 coleccionRutas = new JsonColeccionRutas();
 coleccionRetos = new JsonColeccionRetos();
+
 
 function ImprimirUsuario(entrada: JsonColeccionUsuarios): void {
   let variable = entrada.getUsuarios();
@@ -168,6 +169,11 @@ enum comandosSeleccionMostrarInfoRutas {
   MostrarRutas = 'Mostrar listado de rutas',
 }
 
+enum comandosVolverMenu {
+  VolverMenu = 'Volver al menú principal',
+  Salir = 'Salir'
+}
+
 /**
  * Pregunta al usuario qué comando desea ejecutar
  * y ejecuta el comando correspondiente.
@@ -256,6 +262,11 @@ function promptCrearUsuario() : void {
       },
     },
     ]).then((respuestas) => {
+      //funcion que revisa si ya existe un usuario con ese id
+      if (coleccionUsuarios.getUsuario(parseInt(respuestas.id)) !== null) {
+        console.log('Ya existe un usuario con ese id');
+        return;
+      }
       const nuevoUsuario = new Usuario(respuestas.nombre, parseInt(respuestas.id), parseInt(respuestas.actividades), respuestas.amigos,
       respuestas.grupos_amigos, respuestas.estadisticas, respuestas.rutas_favoritas, respuestas.retos, respuestas.historicos);
       coleccionUsuarios.addUsuario(nuevoUsuario);
@@ -466,6 +477,10 @@ function promptCrearRuta(idUsuarioCreador:number) : void {
     name: 'calificacion',
     message: 'Introduce la calificacion de la ruta'
   }]).then((respuestas) => {
+    if (coleccionRutas.getRuta(parseInt(respuestas.id)) !== null) {
+      console.log('Ya existe una ruta con ese id');
+      return;
+    }
     const nuevaRuta = new Ruta(parseInt(respuestas.id), respuestas.nombre, respuestas.punto_inicio, respuestas.punto_fin,
       parseInt(respuestas.distancia), parseInt(respuestas.desnivel), respuestas.usuarios, parseInt(respuestas.actividad), parseInt(respuestas.calificacion), idUsuarioCreador);
     coleccionRutas.addRuta(nuevaRuta);
@@ -626,6 +641,10 @@ function promptCrearGrupo (idUsuarioCreador:number) : void {
       return result;
     },
   }]).then((respuestas) => {
+    if (coleccionGrupos.getGrupo(parseInt(respuestas.id)) !== null) {
+      console.log('Ya existe un grupo con ese id');
+      return;
+    }
     const nuevoGrupo = new Grupo(parseInt(respuestas.id), respuestas.nombre, respuestas.miembros, respuestas.estadisticas,
     respuestas.clasificacion, respuestas.rutas, respuestas.historicos, idUsuarioCreador);
     coleccionGrupos.addGrupo(nuevoGrupo);
@@ -807,6 +826,10 @@ function promptCrearReto (idUsuarioCreador:number) : void {
       return input.split(',').map(numero => parseInt(numero));
     },
   }]).then((respuestas) => {
+    if (coleccionRetos.getReto(parseInt(respuestas.id)) !== null) {
+      console.log('Ya existe un reto con ese id');
+      return;
+    }
     const nuevoReto = new Reto(parseInt(respuestas.id), respuestas.nombre, respuestas.rutas, parseInt(respuestas.tipo),
     parseInt(respuestas.kilometros), respuestas.usuarios, idUsuarioCreador);
     coleccionRetos.addReto(nuevoReto);
@@ -939,6 +962,8 @@ function submenu(): void{
     })
 }
 
+
+
 /**
  * Crea un usuario
  * @returns {void}
@@ -1000,7 +1025,8 @@ function main(idUsuarioCreador: number): void {
         promptBorrarReto(idUsuarioCreador);
         break;
     }
-  })
+  });
+  //funcion que se queda esperando a que el usuario pulse una tecla para volver al menu principal
 }
 
 InicioMain();

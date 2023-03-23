@@ -6,9 +6,7 @@
       "actividades": 0,
       "amigos": [
         2,
-        3,
-        4,
-        5
+        3
       ],
       "grupos_amigos": [
         [
@@ -62,8 +60,7 @@
       "actividades": 2,
       "amigos": [
         1,
-        3,
-        4
+        3
       ],
       "grupos_amigos": [
         [
@@ -117,8 +114,7 @@
       "actividades": 0,
       "amigos": [
         1,
-        2,
-        4
+        2
       ],
       "grupos_amigos": [
         [
@@ -184,7 +180,12 @@
         [
           1,
           3
-        ]
+        ]== undefined) {
+          console.log('El usuario no existe');
+          return;
+        }
+        let usuario = coleccionUsuarios.getUsuario(idUsuarioCreador);
+        usuario.aniadirAmigo(parseInt(respuestas.id));
       ],
       "estadisticas": [
         [
@@ -1234,6 +1235,99 @@
           "ruta2",
           2
         ]
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Grupo2",
+      "miembrosGrupo": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "estadisticas": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "nombre": "Grupo1",
+      "miembrosGrupo": [
+        1,
+        2,
+        3
+      ],
+      "estadisticas": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "clasificacionUsuarios": [
+        1,
+        2,
+        3
+      ],
+      "RutasFavoritas": [
+        1,
+        2,
+        3
+      ],
+      "historicos": [
+        [
+          "ruta1",
+          1
+        ],
+        [
+          "ruta2",
+          2
+        ]
       ],
       "idCreador": 1
     },
@@ -1455,19 +1549,18 @@
         4
       ],
       "actividad": 4,
-      "calificacion": 5,
-      "idCreador": 1
+      "calificacion": 5
     },
     {
       "id": 2,
       "nombre": "ruta2",
       "geo_ini": [
-        3,
-        3
+        1,
+        1
       ],
       "geo_fin": [
-        4,
-        4
+        2,
+        2
       ],
       "longitud": 30,
       "desnivel": 1,
@@ -1476,8 +1569,7 @@
         2
       ],
       "actividad": 5,
-      "calificacion": 6,
-      "idCreador": 2
+      "calificacion": 6
     },
     {
       "id": 3,
@@ -1671,15 +1763,14 @@
         1,
         2,
         3
-      ],
-      "idCreador": 1
+      ]
     },
     {
       "id": 2,
       "nombre": "reto2",
       "rutasFormantes": [
-        "ruta6",
-        "ruta13"
+        "ruta1",
+        "ruta2"
       ],
       "tipo": 1,
       "kmTotales": 2000,
@@ -1688,8 +1779,7 @@
         2,
         3,
         4
-      ],
-      "idCreador": 6
+      ]
     },
     {
       "id": 3,
