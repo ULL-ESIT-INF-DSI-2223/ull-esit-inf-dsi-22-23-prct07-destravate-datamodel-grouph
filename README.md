@@ -2,9 +2,8 @@
 
 [![Tests](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/node.js.yml)
 
-<<<<<<< HEAD
 [![Coveralls](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/coveralls.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grouph/actions/workflows/coveralls.yml)
-=======
+
 En esta práctica se nos pide crear todo un modelo de un sistema de información de registros de actividades deportivas.
 Para ello se nos pide crear estructuras de datos que modelen una ruta, un usuario, un reto y un grupo. 
 
